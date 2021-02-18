@@ -1,0 +1,131 @@
+import React,
+  {
+    Component, 
+    useState,
+    useEffect
+  }
+from "react";
+
+import { 
+  withRouter, 
+  useLocation,
+  useParams
+} from "react-router-dom";
+import {  useSelector } from "react-redux";
+
+import styled from 'styled-components';
+
+const 
+  Container = styled.div`
+    border: 1px solid red;
+    margin:40px 0;
+  `
+  ;
+
+// class About extends Component {
+//   state = {
+//     message:"",
+//     pid:""
+//   }
+//   componentDidMount(){
+//     console.log(this.props)
+
+//     const { state } = this.props.location;
+
+//     const msg = 
+//           typeof(state) === "object" && 
+//           state.hasOwnProperty('message') ? 
+//           state.message : "";
+
+//     this.setState({message: msg});
+
+//   }
+//   render() {
+//     const { message } = this.state,
+//           { pid } = this.props.match.params; 
+//     return (
+//       <Container>
+
+//         About
+//         <br/>
+//         {message ? `Get value from router --> ${message}` : ""}
+
+//         {pid ? `Get PID from url --> ${pid}` : ""}
+//       </Container>
+//     )
+//   }
+// }
+// export default withRouter(About);
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function About() {
+  //從reducer取得state
+  const userData = useSelector(state => state)
+
+  let  {state} = useLocation(),
+       {PID} = useParams(),
+       query = useQuery();
+
+  // console.log(
+  //   "useLocation",useLocation(),
+  //   "useParams",useParams(),
+  //   "useQuery",useQuery()
+  // )
+
+  const [msg,setMsg] = useState(()=>{
+    return state ? state.message : ""
+  });
+
+  /**
+   * 呼叫 useEffect 時，你告訴 React 刷新 DOM 變動之後運行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state 
+   * 在少見的需要同步發生的情況下（例如測量 layout） -> useLayoutEffect 
+   * 不需要同步發生 -> useEffect
+   * 
+   * 另characterIntroduction組件有介紹更多
+   * */ 
+  useEffect(()=>{
+    // setMsg("change")
+  })
+
+
+  
+  return (
+    <Container>
+
+        About
+        <br/>
+        {userData.counter}
+
+        {/* if、else */}
+        {
+          (()=>{
+            if (PID) {
+              return (<div>PID is exist</div>)
+            } else {
+              return (<div>PID is not exist</div>)
+            }
+          })()
+        }
+
+        {/* 三元運算式 */}
+        {msg ? `Get value from router --> ${msg}` : ""}
+        
+        
+        { PID ?
+          <p>
+            Get PID from url params --> {PID}
+          </p>
+          : ""
+        } 
+
+
+        {query.get("searchMsg") ? `Get Msg from url search --> ${query.get("searchMsg")}` : ""}
+
+      </Container>
+  );
+}
+
+export default About;
