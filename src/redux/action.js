@@ -38,13 +38,13 @@ const fetchUsersRequest = () => {
 const fetchUsersSuccess = users => {
   return {
     type: "FETCH_USERS_SUCCESS",
-    payload: users
+    data: users
   }
 }
 
 const fetchUsersFailure = error => {
   return {
     type: "FETCH_USERS_FAILURE",
-    payload: error
+    data: error
   }
 }

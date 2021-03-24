@@ -10,6 +10,11 @@ import Footer from "./components/Footer/Footer";
 
 import classNames from "classnames/bind";
 import styles from "./App.css";
+
+// for IE 11 !!
+import 'url-search-params-polyfill';
+import 'babel-polyfill';
+
 let scoped = classNames.bind(styles);
 
 export default class App extends Component {

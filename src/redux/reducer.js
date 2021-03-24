@@ -32,14 +32,14 @@ const reducer = (state = initialState, action) => {
     case "FETCH_USERS_SUCCESS":
       return Object.assign({}, state, {
         loading: false,
-        users: action.payload,
+        users: action.data,
         error: ''
       })
     case "FETCH_USERS_FAILURE":
       return Object.assign({}, state, {
         loading: false,
         users: [],
-        error: action.payload
+        error: action.data
       })
     default: return state
   }
