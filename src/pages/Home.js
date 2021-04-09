@@ -6,11 +6,13 @@ const Container = styled.div`
   margin: 40px 0;
 `;
 export default class Home extends Component {
+  
   state = {
     PID: "s96113123",
   };
 
   handlePush() {
+    alert(this.store.getState())
     this.props.history.push({
       pathname: `/about`,
       state: { message: " Home send massage " },
@@ -25,6 +27,7 @@ export default class Home extends Component {
   }
 
   render() {
+  
     return (
       <Container>
         Home

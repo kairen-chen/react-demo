@@ -14,7 +14,7 @@ function CharacterIntroduction(props) {
 
   const userData = useSelector(state => state),
         dispatch = useDispatch(),
-        [height, setHeight] = useState(0);
+        [_height, setHeight] = useState(0);
 
   
   /**
@@ -56,7 +56,8 @@ function CharacterIntroduction(props) {
 
   return (
     <Container>
-      
+      這訊息是從 Route props取得 -> {props.routerToPage}
+      <br/> 
       CharacterIntroduction :
       <br/> 
       count: {userData.counter}
@@ -64,7 +65,7 @@ function CharacterIntroduction(props) {
       <button onClick={() => dispatch(increment())}> + </button>
       <button onClick={() => dispatch(decrement())}> - </button>
       <div ref={refDemo}>
-        <h2>The div is {Math.round(height)}px tall</h2>
+        <h2>The height of div is {Math.round(_height)}px</h2>
         {
           userData &&
           userData.users &&

@@ -1,17 +1,16 @@
 import React,
   {
-    Component, 
     useState,
     useEffect
   }
 from "react";
 
 import { 
-  withRouter, 
   useLocation,
   useParams
 } from "react-router-dom";
-import {  useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 
 import styled from 'styled-components';
 
@@ -61,7 +60,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function About() {
+function About(props) {
   //從reducer取得state
   const userData = useSelector(state => state)
 
@@ -96,8 +95,9 @@ function About() {
     <Container>
 
         About
+        {props.pToc}
         <br/>
-        {userData.counter}
+        count: {userData.counter}
 
         {/* if、else */}
         {

@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 /**
  * css scoped 方法1.
  * 
- * npm run eject //打開wp config設定檔
+ * npm run eject //打開webpack.config.js設定檔
  * 找到wp.config.js內大概line:470
  * use: getStyleLoaders({
  *              加入modules
@@ -60,6 +60,7 @@ export default class Footer extends Component {
   //   this.state = {
   //     name: "Kairen"
   //   }
+  //   //需要.bind的原因:es6 class寫法會讓this指向el本身,非react實體
   //   this.handleInputText = this.handleInputText.bind(this)
 
     /**
@@ -86,7 +87,7 @@ export default class Footer extends Component {
   // babel會幫忙轉譯寫法 方法2.
   state = {
     name: "Kairen",
-    cTopValue: "我是Home(子)",
+    cTopValue: "footer value",
     /* 迴圈Demo */
     UserDate: [
       {
@@ -115,17 +116,17 @@ export default class Footer extends Component {
 
   // 子傳子Demo
   handleCToC(){
-    this.props.handleCToC(this.state.cTopValue);
+    this.props.handleCToC(`${this.state.cTopValue}`);
   };
 
-  render(props){
+  render(){
     // console.log("Footer props: ", this.props);
 
     return(
       <Container>
 
         {/* props Demo */}
-        <h1> {this.props.pToc ? `父傳子 Demo --> ${this.props.pToc}` : ""} </h1>
+        <h1> {this.props.pToc ? `component get value of Layout --> ${this.props.pToc}` : ""} </h1>
 
 
         {/* scoped css Demo */}

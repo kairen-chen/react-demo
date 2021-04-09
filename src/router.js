@@ -3,32 +3,31 @@ import About from './pages/About';
 import Home from './pages/Home';
 import CharacterIntroduction from './pages/CharacterIntroduction';
 
+function router(props) {
 
-const router = (props) => {
+  return (
+    <Switch> 
 
- return (
-  <Switch> 
+      {/* component load 方法1. */}
+      <Route exact path = "/" component = {Home}/>
 
-    {/* component load 方法1. */}
-    <Route exact path = "/" component = {Home}/>
+      {/* component load 方法2. */}
+      {/* <Route path="/about">
+        <About />
+      </Route> */}
 
-    {/* component load 方法2. */}
-    {/* <Route path="/about">
-      <About />
-    </Route> */}
+      
+      <Route exact path = "/about" component = {About} />
+      <Route path = "/about/:PID" component = {About} />
+      
+      {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
+      <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } />
+      
+      {/* <Redirect to = {{ pathname: "/about"}} /> */}
+      <Redirect to = "/about" />
 
-    <Route exact path="/about" component = {About} />
-    <Route path = "/about/:PID" component = {About} />
-
-    
-    {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
-    <Route path="/characterIntroduction" component = { () => CharacterIntroduction(props) } />
-    
-    <Redirect to = '/' />
-
-
-  </Switch>
- )
+    </Switch>
+  )
 };
 
 export default router;
