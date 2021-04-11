@@ -1,4 +1,6 @@
 import {Component} from "react";
+import { connect } from 'react-redux'
+import * as actionCreators from '../redux/action'
 
 // component
 import RouterView from "../router";
@@ -15,7 +17,7 @@ import 'babel-polyfill';
 
 let scoped = classNames.bind(styles);
 
-export default class App extends Component {
+class layout extends Component {
 
   state = {
     routerToPage:"routerToPage",
@@ -26,7 +28,10 @@ export default class App extends Component {
 
   // life-cycle
   // DOM已經掛載完成 ，在這個階段可以呼叫api來更新DOM ，適合做一些初始化的工作
-  componentDidMount(){}
+  componentDidMount(){
+    // 使用stroe內的method改值
+    this.props.increment();
+  }
 
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環
   componentDidUpdate(){}
@@ -70,6 +75,7 @@ export default class App extends Component {
         <div className={scoped("layoutContainer")}>
           Layout
           <br/>
+          This store.counter value : { this.props.counter }
           <button onClick = {this.handleClick.bind(this,"Layout value")}>Layout傳component Demo1</button>
           <button onClick = {()=>this.handleClick("Layout value")}>Layout傳component Demo2</button>
           <Header
@@ -121,3 +127,9 @@ export default class App extends Component {
     );
   }
 }
+// 將store中的items值傳綁到props上
+const mapStateToProps = store => (
+  { ...store }
+)
+
+export default connect(mapStateToProps, actionCreators)(layout)

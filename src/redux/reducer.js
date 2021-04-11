@@ -11,7 +11,7 @@ const initialState = {
     loading: false,
     users: [],
     error: '',
-    counter: 0
+    counter: 20
 }
 
 const reducer = (state = initialState, action) => {
