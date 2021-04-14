@@ -36,20 +36,20 @@ class layout extends Component {
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環
   componentDidUpdate(){}
 
-  // DOM被移除 ，在這階段可以用來清除一些計時器
+  // component即將銷毀,DOM被移除，在這階段可以用來清除一些計時器
   componentWillUnmount(){}
 
-  // props、state改變就會觸發，在初始化的時候也會觸發一次
-  // getDerivedStateFromProps()
+  // props、state改變就會觸發，在初始化的時候也會觸發一次,使用情境:抄寫 prop 至 state
+  // static getDerivedStateFromProps (props, state) {}
 
   // 讓你自己判斷是否要更新，如果回傳false這邊就不在往下執行render， 所以這邊可以做一些效能的優化
-  // shouldComponentUpdate
+  // shouldComponentUpdate (nextProps, nextState) {}
   
   // 在更新DOM和Refs之前會觸發
-  // getSnapshotBeforeUpdate
+  // getSnapshotBeforeUpdate(prevProps, prevState) {}
 
   // 跟try catch概念有點像，捕捉子組件的錯誤，不因為錯誤而影響到父組件。
-  // componentDidCatch()
+  // componentDidCatch(error, errorInfo) {}
 
   handleClick = (parameter)=> {
     this.setState({

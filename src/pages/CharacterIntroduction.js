@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback} from "react";
 
 import { useSelector, useDispatch  } from "react-redux";
 import { increment, decrement, fetchUsers } from "../redux/action";
@@ -47,15 +47,16 @@ function CharacterIntroduction(props) {
    * 取得dispatch後的,el height
    */
   const refDemo = useCallback(node => {
-    if (node !== null) {
+    if (node !== null && userData.users.length > 0) {
+      console.log("get div height : ", node.offsetHeight)
       setHeight(node.getBoundingClientRect().height);
       //Try it -->
       // alert(`height change : ${node.getBoundingClientRect().height} px`)
     }
-  }, [userData.users]);
+  }, [userData.users]);  
 
   return (
-    <Container>
+    <Container>4
       這訊息是從 Route props取得 -> {props.routerToPage}
       <br/> 
       CharacterIntroduction :

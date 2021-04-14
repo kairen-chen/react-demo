@@ -61,7 +61,7 @@ export default class Footer extends Component {
   //     name: "Kairen"
   //   }
   //   //需要.bind的原因:es6 class寫法會讓this指向el本身,非react實體
-  //   this.handleInputText = this.handleInputText.bind(this)
+    // this.handleInputText = this.handleInputText.bind(this)
 
     /**
      * 如果是要call父層方法的事件,會在父層import conponent時呼叫一次,
