@@ -75,7 +75,7 @@ class layout extends Component {
         <div className={scoped("layoutContainer")}>
           Layout
           <br/>
-          This store.counter value : { this.props.counter }
+          class component get store.counter value : { this.props.counter }
           <button onClick = {this.handleClick.bind(this,"Layout value")}>Layout傳component Demo1</button>
           <button onClick = {()=>this.handleClick("Layout value")}>Layout傳component Demo2</button>
           <Header

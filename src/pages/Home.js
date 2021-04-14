@@ -12,7 +12,6 @@ export default class Home extends Component {
   };
 
   handlePush() {
-    alert(this.store.getState())
     this.props.history.push({
       pathname: `/about`,
       state: { message: " Home send massage " },

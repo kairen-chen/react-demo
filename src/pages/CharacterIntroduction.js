@@ -56,7 +56,7 @@ function CharacterIntroduction(props) {
   }, [userData.users]);  
 
   return (
-    <Container>4
+    <Container>
       這訊息是從 Route props取得 -> {props.routerToPage}
       <br/> 
       CharacterIntroduction :
