@@ -29,7 +29,12 @@ class layout extends Component {
   // life-cycle
   // DOM已經掛載完成 ，在這個階段可以呼叫api來更新DOM ，適合做一些初始化的工作
   componentDidMount(){
-    // 使用stroe內的method改值
+    /**
+     * 使用stroe內的method改值
+     * 注意: 因class component綁store的方式是透過props,
+     *       又functio componet hook useEffect有觀察props,所以這裡action時
+     *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
+     * */ 
     this.props.increment();
   }
 
@@ -75,7 +80,7 @@ class layout extends Component {
         <div className={scoped("layoutContainer")}>
           Layout
           <br/>
-          class component get store.counter value : { this.props.counter }
+          class component get store.counter value : { this.props.store_counter }
           <button onClick = {this.handleClick.bind(this,"Layout value")}>Layout傳component Demo1</button>
           <button onClick = {()=>this.handleClick("Layout value")}>Layout傳component Demo2</button>
           <Header
@@ -129,7 +134,8 @@ class layout extends Component {
 }
 // 將store中的items值傳綁到props上
 const mapStateToProps = store => (
-  { ...store }
+  { store_counter: store.counter }
 )
+
 
 export default connect(mapStateToProps, actionCreators)(layout)

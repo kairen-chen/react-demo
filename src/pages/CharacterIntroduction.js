@@ -18,8 +18,7 @@ function CharacterIntroduction(props) {
 
   
   /**
-   * 順序-> render後執行
-   * 
+   * useEffect順序-> render後執行
    * useEffect --> mount 或 props update 或 指定變數改變時 觸發
    * return function --> 在 component unmount時 或 props update 或 指定變數改變時，React 會執行清除,這是 effect 的可選清除機制
    *                     ,除了unmount時,其餘兩種狀況下會優先觸發本return在觸發useEffect
@@ -27,7 +26,11 @@ function CharacterIntroduction(props) {
    * Try it --> [userData.counter] 代表這參數一改變時觸發(mount、unmount)
    * */ 
   useEffect(() => {
-
+    /**
+     * 注意: 因class component綁store的方式是透過props,
+     *       又functio componet hook useEffect有觀察props,所以layout.js action時
+     *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
+     * */
     dispatch(fetchUsers());
 
     //Try it -->
@@ -41,6 +44,7 @@ function CharacterIntroduction(props) {
 
     }
   }, [dispatch]);
+ 
 
   /*
    * refDemo
@@ -50,8 +54,6 @@ function CharacterIntroduction(props) {
     if (node !== null && userData.users.length > 0) {
       console.log("get div height : ", node.offsetHeight)
       setHeight(node.getBoundingClientRect().height);
-      //Try it -->
-      // alert(`height change : ${node.getBoundingClientRect().height} px`)
     }
   }, [userData.users]);  
 
