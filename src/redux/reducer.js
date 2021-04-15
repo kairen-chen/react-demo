@@ -11,7 +11,8 @@ const initialState = {
     loading: false,
     users: [],
     error: '',
-    counter: 20
+    counter: 20,
+    UserInfo: !true
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +41,14 @@ const reducer = (state = initialState, action) => {
         loading: false,
         users: [],
         error: action.data
+      })
+    case "LOGIN":
+      return Object.assign({}, state, {
+        UserInfo: true
+      })
+    case "LOGOUT":
+      return Object.assign({}, state, {
+        UserInfo: false
       })
     default: return state
   }

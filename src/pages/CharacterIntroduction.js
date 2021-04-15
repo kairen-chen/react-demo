@@ -16,7 +16,7 @@ function CharacterIntroduction(props) {
         dispatch = useDispatch(),
         [_height, setHeight] = useState(0);
 
-  
+         
   /**
    * useEffect順序-> render後執行
    * useEffect --> mount 或 props update 或 指定變數改變時 觸發

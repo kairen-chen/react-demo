@@ -7,7 +7,8 @@ from "react";
 
 import { 
   useLocation,
-  useParams
+  useParams,
+  useRouteMatch
 } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -89,7 +90,7 @@ function About(props) {
     // setMsg("change")
   })
 
-
+  
   
   return (
     <Container>
