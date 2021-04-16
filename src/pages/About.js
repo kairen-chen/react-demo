@@ -43,7 +43,7 @@ function About(props) {
   const [msg,setMsg] = useState(()=>{
     return state ? state.message : ""
   });
-  let [isBlocking, setIsBlocking] = useState(false);
+
 
   /**
    * 呼叫 useEffect 時，你告訴 React 刷新 DOM 變動之後運行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state 
@@ -55,23 +55,12 @@ function About(props) {
   useEffect(()=>{
     // 透過setMsg些改msg的值
     // setMsg("change")
-
-    // 一進入component時跳出須登入提示
-    setIsBlocking(true);
-    return  () => { 
-      setIsBlocking(false);
-    } 
   },[])
 
   
   return (
     <Container>
-        <Prompt
-          when={isBlocking && !userData.UserInfo}
-          message={location =>
-            `你必須登入!`
-          }
-        />
+        
         About
         {props.pToc}
         <br/>

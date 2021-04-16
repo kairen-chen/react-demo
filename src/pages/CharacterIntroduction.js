@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback} from "react";
 
 import { useSelector, useDispatch  } from "react-redux";
 import { increment, decrement, fetchUsers } from "../redux/action";
+import { Prompt } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -15,7 +16,7 @@ function CharacterIntroduction(props) {
   const userData = useSelector(state => state),
         dispatch = useDispatch(),
         [_height, setHeight] = useState(0);
-
+  let [isBlocking, setIsBlocking] = useState(false);
          
   /**
    * useEffect順序-> render後執行
@@ -31,7 +32,9 @@ function CharacterIntroduction(props) {
      *       又functio componet hook useEffect有觀察props,所以layout.js action時
      *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
      * */
-    dispatch(fetchUsers());
+    dispatch(fetchUsers())
+
+    setIsBlocking(true);
 
     //Try it -->
     // alert(`Component inited or props change (step 2)! ${ props.pToc || '' } `)
@@ -41,7 +44,7 @@ function CharacterIntroduction(props) {
 
       //Try it -->
       // alert("Component leaved or props change (step 1) ")
-
+      setIsBlocking(false);
     }
   }, [dispatch]);
  
@@ -59,6 +62,12 @@ function CharacterIntroduction(props) {
 
   return (
     <Container>
+      <Prompt
+          when={isBlocking}
+          message={location =>
+            `即將離開此頁, 為確保資料安全, 記得登出!!`
+          }
+      />
       這訊息是從 Route props取得 -> {props.routerToPage}
       <br/> 
       CharacterIntroduction :

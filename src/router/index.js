@@ -1,9 +1,10 @@
-import {Switch,Route,Redirect} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import About from '../pages/About';
 import Home from '../pages/Home';
 import CharacterIntroduction from '../pages/CharacterIntroduction';
 import PageNotFound from '../pages/PageNotFound';
 import Login from '../pages/Login';
+import RecursivePath from '../pages/RecursivePath';
 import PrivateRoute from './privateRoute/Auth/privateRoute'
 
 function router(props) {
@@ -22,8 +23,14 @@ function router(props) {
       
       <Route exact path = "/about" component = {About} />
       <Route path = "/about/:PID" component = {About} />
-
       <Route exact path="/login" component={Login} />
+      
+      <Route path="/RecursivePath/:id">
+          <RecursivePath />
+        </Route>
+      <Route path="/RecursivePath">
+        <Redirect to="/RecursivePath/0"/>
+      </Route>
       
       {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
       {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}

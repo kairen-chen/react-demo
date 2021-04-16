@@ -35,6 +35,9 @@ export default class Nav extends Component {
           <li>
             <Link to="/characterIntroduction">Character introduction</Link>
           </li>
+          <li>
+            <Link to="/RecursivePath">Recursive path</Link>
+          </li>
         </ul>
       </Container>
     );
