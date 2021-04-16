@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as actionCreators from '../redux/action'
 
 // component
-import RouterView from "../router";
+import RouterView from "../router/";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
