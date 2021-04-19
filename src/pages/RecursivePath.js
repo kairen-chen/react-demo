@@ -26,7 +26,7 @@ export default function Person(props) {
 
     useEffect(()=>{
       window.previousLocation = props.location;
-    },[])
+    })
 
     return (
       <div>

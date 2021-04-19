@@ -12,7 +12,7 @@ export default function PageNotFound(props) {
 
   useEffect(()=>{
     window.previousLocation = props.location;
-  },[])
+  })
 
   
   return (

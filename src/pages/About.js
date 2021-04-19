@@ -7,8 +7,7 @@ from "react";
 
 import { 
   useLocation,
-  useParams,
-  Prompt
+  useParams
 } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -40,7 +39,8 @@ function About(props) {
   //   "useQuery",useQuery()
   // )
 
-  const [msg,setMsg] = useState(()=>{
+  // [msg,setMsg]
+  const [msg] = useState(()=>{
     return state ? state.message : ""
   });
 
@@ -56,7 +56,7 @@ function About(props) {
     // 透過setMsg些改msg的值
     // setMsg("change")
     window.previousLocation = props.location;
-  },[])
+  })
 
   
   return (

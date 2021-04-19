@@ -109,11 +109,20 @@ export default class Footer extends Component {
     // react的值要用setState設定
     this.setState({[name]: value});
   };
+  // 不使用雙箭頭拿target的寫法, val只會拿最後一個
+  // handleInputText =  (val, e) => {
+  //   console.log(val, e)
+  // };
 
   // 子傳父Demo
   handleCToP(){
     this.props.handleCToP(`${this.state.cTopValue}`);
   };
+
+  // handleCToP = () => {
+  //   this.props.handleCToP(`${this.state.cTopValue}`);
+  // };
+
 
 
   // 子傳子Demo
@@ -141,6 +150,7 @@ export default class Footer extends Component {
         <InputText 
           name = "name" 
           value = { this.state.name }  
+          // onChange = { this.handleInputText.bind( "test", this) }
           onChange = { this.handleInputText("test") }
         />
         <Title>我是 { this.state.name } </Title>
@@ -162,11 +172,10 @@ export default class Footer extends Component {
         <br/>
         
         {/* props Demo */}
+        <button onClick = {this.handleCToP}>子傳父Demo0</button>
         <button onClick = {this.handleCToP.bind(this)}>子傳父Demo1</button>
         <button onClick={()=>{this.props.handleCToP("子傳父")}} >子傳父Demo2</button>
         <button onClick = {this.handleCToC.bind(this)}>子傳子Demo</button>
-        
-        
 
       </Container>
     ); 
