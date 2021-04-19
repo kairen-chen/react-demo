@@ -7,7 +7,7 @@ import { withRouter } from "react-router";
 const 
   Container = styled.div`
     border: 1px solid red;
-    margin:40px 0;
+    margin:40px 10px;
   `
   ;
 
@@ -18,7 +18,7 @@ class Header extends Component {
     const { history } = this.props;
     return(
       <Container>
-        
+        <h1>Header</h1>
         {/* 類似v-slot */}
         { this.props.children[0] }
 

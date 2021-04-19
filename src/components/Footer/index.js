@@ -38,6 +38,8 @@ import React,{Component} from 'react';
 import styled, { css } from 'styled-components';
 const Container = styled.div`
   border: 1px solid red;
+  margin: 20px 10px;
+  overflow: hidden;
 `
 
 const Title = styled.h1`
@@ -124,7 +126,7 @@ export default class Footer extends Component {
 
     return(
       <Container>
-
+        <h1>Footer</h1>
         {/* props Demo */}
         <h1> {this.props.pToc ? `component get value of Layout --> ${this.props.pToc}` : ""} </h1>
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 70%;
+  width: 100%;
   border: 1px solid red;
   ul {
     display: flex;

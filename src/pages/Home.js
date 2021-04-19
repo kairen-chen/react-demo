@@ -10,7 +10,11 @@ export default class Home extends Component {
   state = {
     PID: "s96113123",
   };
-
+  
+  componentDidMount() {
+    window.previousLocation = this.props.location;
+  }
+  
   handlePush() {
     this.props.history.push({
       pathname: `/about`,

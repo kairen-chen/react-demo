@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration:none;
+  
 }
 
 .layoutContainer {
@@ -67,5 +68,9 @@ img{
   color: yellowgreen;
   border: 1px dotted yellowgreen;
   transform: rotate(3deg);
+}
+
+.inline_container{
+  display: flex;
 }
 

@@ -8,14 +8,13 @@ import RecursivePath from '../pages/RecursivePath';
 import PrivateRoute from './privateRoute/Auth/privateRoute'
 
 function router(props) {
-
   return (
     <Switch> 
 
       {/* component load 方法1. */}
       <Route exact path = "/" component = {Home}/>
 
-      {/* component load 方法2. */}
+      {/* component load 方法2.(注意!! 這樣寫無法讀取props.location) */}
       {/* <Route path="/about">
         <About />
       </Route> */}
@@ -25,9 +24,8 @@ function router(props) {
       <Route path = "/about/:PID" component = {About} />
       <Route exact path="/login" component={Login} />
       
-      <Route path="/RecursivePath/:id">
-          <RecursivePath />
-        </Route>
+      <Route path="/RecursivePath/:id" component={RecursivePath} />
+      
       <Route path="/RecursivePath">
         <Redirect to="/RecursivePath/0"/>
       </Route>

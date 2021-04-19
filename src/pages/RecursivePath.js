@@ -1,4 +1,5 @@
-import React from "react";
+import { useEffect } from "react";
+
 import {
   Switch,
   Route,
@@ -18,11 +19,15 @@ function find(id) {
     return PEEPS.filter(p => p.id === id);
 }
 
-export default function Person() {
+export default function Person(props) {
     let { url } = useRouteMatch();
     let { id } = useParams();
     let person = find(parseInt(id));
-    
+
+    useEffect(()=>{
+      window.previousLocation = props.location;
+    },[])
+
     return (
       <div>
         <h3>{person[0].name}’s Friends</h3>

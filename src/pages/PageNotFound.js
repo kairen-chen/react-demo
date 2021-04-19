@@ -10,7 +10,9 @@ const Container = styled.div`
 
 export default function PageNotFound(props) {
 
-  useEffect(() => {}, []);
+  useEffect(()=>{
+    window.previousLocation = props.location;
+  },[])
 
   
   return (

@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 
 
 class PrivateRoute extends Component {
+    componentDidMount() {
+        window.previousLocation = this.props.location;
+    }
+    
     render() {
         let { component: Component, userInfo, ...rest } = this.props;
         return (
@@ -17,7 +21,7 @@ class PrivateRoute extends Component {
                     // 未登入: 跳至page/login.js
                     <Redirect to={{
                         pathname: "/login",
-                        state: { referrer: props.location }
+                        state: { referrer: props.location } //需要帶參數到history可以這樣寫
                     }} />
                 }
             />
