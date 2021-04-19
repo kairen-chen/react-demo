@@ -115,13 +115,13 @@ export default class Footer extends Component {
   // };
 
   // 子傳父Demo
-  handleCToP(){
-    this.props.handleCToP(`${this.state.cTopValue}`);
-  };
-
-  // handleCToP = () => {
+  // handleCToP(){
   //   this.props.handleCToP(`${this.state.cTopValue}`);
   // };
+
+  handleCToP = () => {
+    this.props.handleCToP(`${this.state.cTopValue}`);
+  };
 
 
 
