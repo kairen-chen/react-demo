@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/action'
-import { withRouter } from "react-router";
 
 const 
   Container = styled.div`
@@ -15,7 +14,6 @@ const
 class Header extends Component {
   render(props){
     // console.log("Header props: ", this.props);
-    const { history } = this.props;
     return(
       <Container>
         <h1>Header</h1>
@@ -27,15 +25,6 @@ class Header extends Component {
         { this.props.children[1] }
 
         <h1> {this.props.cToc ? `子傳子 Demo --> ${this.props.cToc}` : ""} </h1>
-        <button onClick={()=>{ 
-          this.props.userInfo ? 
-          this.props.logout() 
-          : 
-          history.push(`/login`)
-        }}
-        > 
-          {this.props.userInfo? "logout" : "login"} 
-        </button>
       </Container>
     )
   }
@@ -46,4 +35,4 @@ const mapStateToProps = store => {
       userInfo: store.UserInfo
   };
 };
-export default withRouter(connect(mapStateToProps, actionCreators)(Header))
+export default connect(mapStateToProps, actionCreators)(Header)

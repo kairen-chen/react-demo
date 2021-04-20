@@ -7,6 +7,7 @@ import RouterView from "../router/";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Login from "../components/Login";
 
 import classNames from "classnames/bind";
 import styles from "./layout.css";
@@ -37,12 +38,15 @@ class layout extends Component {
      * */ 
     this.props.increment();
   }
+  componentWillMount() {}
 
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環
   componentDidUpdate(){}
 
   // component即將銷毀,DOM被移除，在這階段可以用來清除一些計時器
-  componentWillUnmount(){}
+  componentWillUnmount(){
+    this.unlisten();
+  }
 
   // props、state改變就會觸發，在初始化的時候也會觸發一次,使用情境:抄寫 prop 至 state
   // static getDerivedStateFromProps (props, state) {}
@@ -76,8 +80,13 @@ class layout extends Component {
 
   render() {
     return (
-
         <div className={scoped("layoutContainer")}>
+          <Login/>
+
+          <Nav/>
+          {/* 使用props傳值到pages */}
+          <RouterView routerToPage={this.state.routerToPage}/>
+
           <div className = {scoped("layout")}>
             <h1>Layout</h1>
             <br/>
@@ -86,6 +95,7 @@ class layout extends Component {
             <button onClick = {()=>this.handleClick("Layout value demo2")}>Layout傳component Demo2</button>
             {this.state.cTopName?`子傳父 Demo --> ${this.state.cTopName}` : ''}
           </div>
+   
 
           <div className={scoped("inline_container")}>
             <Header
@@ -126,15 +136,6 @@ class layout extends Component {
               handleCToC = {this.handleCToC}
             ></Footer>
           </div>
-
-          <Nav/>
-
-          {/* 使用props傳值到pages */}
-          <RouterView routerToPage={this.state.routerToPage}/>
-          
-
-
-
         </div>
 
     );
@@ -142,7 +143,9 @@ class layout extends Component {
 }
 // 將store中的items值傳綁到props上
 const mapStateToProps = store => (
-  { store_counter: store.counter }
+  { 
+    store_counter: store.counter
+  }
 )
 
 

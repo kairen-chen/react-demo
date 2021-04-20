@@ -1,9 +1,7 @@
 import React,{Component} from "react";
 import { connect } from "react-redux";
 import * as actionCreators from '../redux/action'
-
 class PrivateRoute extends Component {
-    componentDidMount(){}
     // props更新後導頁
     componentDidUpdate(){
         if(this.props.userInfo)

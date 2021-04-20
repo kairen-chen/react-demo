@@ -23,7 +23,6 @@ export default function Person(props) {
     let { url } = useRouteMatch();
     let { id } = useParams();
     let person = find(parseInt(id));
-
     useEffect(()=>{
       window.previousLocation = props.location;
     })

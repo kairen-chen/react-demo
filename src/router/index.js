@@ -5,6 +5,7 @@ import CharacterIntroduction from '../pages/CharacterIntroduction';
 import PageNotFound from '../pages/PageNotFound';
 import Login from '../pages/Login';
 import RecursivePath from '../pages/RecursivePath';
+import Sidebar from '../pages/Sidebar';
 import PrivateRoute from './privateRoute/Auth/privateRoute'
 
 function router(props) {
@@ -19,16 +20,14 @@ function router(props) {
         <About />
       </Route> */}
 
-      
       <Route exact path = "/about" component = {About} />
       <Route path = "/about/:PID" component = {About} />
       <Route exact path="/login" component={Login} />
-      
       <Route path="/RecursivePath/:id" component={RecursivePath} />
-      
       <Route path="/RecursivePath">
         <Redirect to="/RecursivePath/0"/>
       </Route>
+      <Route path="/Sidebar" component={Sidebar} />
       
       {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
       {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}
