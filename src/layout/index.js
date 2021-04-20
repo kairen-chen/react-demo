@@ -16,6 +16,12 @@ import styles from "./layout.css";
 import 'url-search-params-polyfill';
 import 'babel-polyfill';
 
+import {
+  TransitionGroup,
+  CSSTransition
+} from "react-transition-group";
+import "../pages/RouterDemo/AnimatedTransitions.scss"
+
 let scoped = classNames.bind(styles);
 
 class layout extends Component {
@@ -38,14 +44,12 @@ class layout extends Component {
      * */ 
     this.props.increment();
   }
-  componentWillMount() {}
 
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環
   componentDidUpdate(){}
 
   // component即將銷毀,DOM被移除，在這階段可以用來清除一些計時器
   componentWillUnmount(){
-    this.unlisten();
   }
 
   // props、state改變就會觸發，在初始化的時候也會觸發一次,使用情境:抄寫 prop 至 state
@@ -86,6 +90,7 @@ class layout extends Component {
           <Nav/>
           {/* 使用props傳值到pages */}
           <RouterView routerToPage={this.state.routerToPage}/>
+      
 
           <div className = {scoped("layout")}>
             <h1>Layout</h1>
