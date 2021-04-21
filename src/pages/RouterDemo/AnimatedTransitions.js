@@ -16,7 +16,6 @@ import "./AnimatedTransitions.scss"
 
 export default function AnimationApp() {
   let location = useLocation();
-
   return (
     <div style={styles.fill}>
       <ul style={styles.nav}>

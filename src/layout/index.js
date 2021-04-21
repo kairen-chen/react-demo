@@ -1,6 +1,7 @@
 import {Component} from "react";
 import { connect } from 'react-redux'
 import * as actionCreators from '../redux/action'
+import { withRouter } from "react-router";
 
 // component
 import RouterView from "../router/";
@@ -16,11 +17,6 @@ import styles from "./layout.css";
 import 'url-search-params-polyfill';
 import 'babel-polyfill';
 
-import {
-  TransitionGroup,
-  CSSTransition
-} from "react-transition-group";
-import "../pages/RouterDemo/AnimatedTransitions.scss"
 
 let scoped = classNames.bind(styles);
 
@@ -36,6 +32,7 @@ class layout extends Component {
   // life-cycle
   // DOM已經掛載完成 ，在這個階段可以呼叫api來更新DOM ，適合做一些初始化的工作
   componentDidMount(){
+    
     /**
      * 使用stroe內的method改值
      * 注意: 因class component綁store的方式是透過props,
@@ -84,64 +81,66 @@ class layout extends Component {
 
   render() {
     return (
-        <div className={scoped("layoutContainer")}>
-          <Login/>
+      <div className={scoped("layoutContainer")}>
+        <Login/>
 
-          <Nav/>
-          {/* 使用props傳值到pages */}
-          <RouterView routerToPage={this.state.routerToPage}/>
-      
+        <Nav/>
+        <RouterView 
+          routerToPage={this.state.routerToPage} 
+          location={this.props.location}
+          userInfo={this.props.userInfo}
+        />
 
-          <div className = {scoped("layout")}>
-            <h1>Layout</h1>
-            <br/>
-            class component get store.counter value : { this.props.store_counter }
-            <button onClick = {this.handleClick.bind(this,"Layout value demo1")}>Layout傳component Demo1</button>
-            <button onClick = {()=>this.handleClick("Layout value demo2")}>Layout傳component Demo2</button>
-            {this.state.cTopName?`子傳父 Demo --> ${this.state.cTopName}` : ''}
-          </div>
-   
-
-          <div className={scoped("inline_container")}>
-            <Header
-              cToc = { this.state.cTocName } 
-            > 
-              {/* slot */}
-              <div>
-                <img src = {process.env.PUBLIC_URL + '/logo.svg'} className = {scoped("App-logo")} alt = "logo" />
-                <img src = {'../logo.svg'} className = {scoped("App-logo")} alt = "logo" />
-                <p>
-                  Edit <code>src/layout.js</code> and save to reload.
-                </p>
-                <a
-                  className = {scoped("App-link")}
-                  target = "_blank"
-                  rel = "noopener noreferrer"
-                  href = "https://reactrouter.com/web/example/basic"
-                >
-                  Learn React router
-                </a>
-                <hr/>
-                <a
-                  className = {scoped("App-link")}
-                  target = "_blank"
-                  rel = "noopener noreferrer"
-                  href = "https://medium.com/@shizukuichi/100-%E8%A1%8C%E7%A7%92%E6%87%82-react-redux-middleware-52ac75d169fe"
-                >
-                  Learn React redux
-                </a>
-                <h1 className = {scoped("title")}> scoped css test </h1>
-              </div>
-              <button> This is children props </button>
-            </Header>
-            
-            <Footer
-              pToc = { this.state.pTocName }
-              handleCToP = {this.handleCToP}
-              handleCToC = {this.handleCToC}
-            ></Footer>
-          </div>
+        <div className = {scoped("layout")}>
+          <h1>Layout</h1>
+          <br/>
+          class component get store.counter value : { this.props.store_counter }
+          <button onClick = {this.handleClick.bind(this,"Layout value demo1")}>Layout傳component Demo1</button>
+          <button onClick = {()=>this.handleClick("Layout value demo2")}>Layout傳component Demo2</button>
+          {this.state.cTopName?`子傳父 Demo --> ${this.state.cTopName}` : ''}
         </div>
+  
+
+        <div className={scoped("inline_container")}>
+          <Header
+            cToc = { this.state.cTocName } 
+          > 
+            {/* slot */}
+            <div>
+              <img src = {process.env.PUBLIC_URL + '/logo.svg'} className = {scoped("App-logo")} alt = "logo" />
+              <img src = {'../logo.svg'} className = {scoped("App-logo")} alt = "logo" />
+              <p>
+                Edit <code>src/layout.js</code> and save to reload.
+              </p>
+              <a
+                className = {scoped("App-link")}
+                target = "_blank"
+                rel = "noopener noreferrer"
+                href = "https://reactrouter.com/web/example/basic"
+              >
+                Learn React router
+              </a>
+              <hr/>
+              <a
+                className = {scoped("App-link")}
+                target = "_blank"
+                rel = "noopener noreferrer"
+                href = "https://medium.com/@shizukuichi/100-%E8%A1%8C%E7%A7%92%E6%87%82-react-redux-middleware-52ac75d169fe"
+              >
+                Learn React redux
+              </a>
+              <h1 className = {scoped("title")}> scoped css test </h1>
+            </div>
+            <button> This is children props </button>
+          </Header>
+          
+          <Footer
+            pToc = { this.state.pTocName }
+            handleCToP = {this.handleCToP}
+            handleCToC = {this.handleCToC}
+          ></Footer>
+        </div>
+      </div>
 
     );
   }
@@ -149,9 +148,10 @@ class layout extends Component {
 // 將store中的items值傳綁到props上
 const mapStateToProps = store => (
   { 
+    userInfo: store.UserInfo,
     store_counter: store.counter
   }
 )
 
 
-export default connect(mapStateToProps, actionCreators)(layout)
+export default withRouter(connect(mapStateToProps, actionCreators)(layout))

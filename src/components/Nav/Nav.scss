@@ -23,7 +23,7 @@ ul{
                 text-align: left;
             }
         }
-        &:hover div{
+        &.active div{
             opacity: 1;
             transition: opacity 1s;
             ul{

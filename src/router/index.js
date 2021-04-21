@@ -9,13 +9,25 @@ import Sidebar from '../pages/RouterDemo/Sidebar';
 import AnimatedTransitions from '../pages/RouterDemo/AnimatedTransitions';
 import PrivateRoute from './privateRoute/Auth/privateRoute'
 
-
+// 做個轉場動畫
+import {
+  TransitionGroup,
+  CSSTransition
+} from "react-transition-group";
 import "../pages/RouterDemo/AnimatedTransitions.scss"
 
 function router(props) {
+  console.log(props)
   return (
-    <Switch> 
-
+    <TransitionGroup>
+      <CSSTransition
+        key={props.location.key}
+        classNames="fade"
+        timeout={500}
+      >
+      
+        <Switch>
+        {/* <Switch> */}
           {/* component load 方法1. */}
           <Route exact path = "/" component = {Home}/>
 
@@ -42,15 +54,17 @@ function router(props) {
           
           {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
           {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}
-          
+  
           {/* 要去這頁前先到PrivateRoute.js檢查有無登入 */}
-          <PrivateRoute exact path="/characterIntroduction" component = { () => CharacterIntroduction(props) } />
-
-          {/* <Redirect to = {{ pathname: "/about"}} /> */}
-          {/* <Redirect to = "/about" /> */}
-          <Route path = "*" component={ PageNotFound } />
-
-    </Switch>
+          <PrivateRoute
+            exact 
+            path="/characterIntroduction" 
+            component = { () => CharacterIntroduction(props) } 
+          />
+          <Route component={ PageNotFound } />
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
   )
 };
 

@@ -23,6 +23,23 @@ const Container = styled.div`
   }
 `;
 export default class Nav extends Component {
+  state = {
+    isBoxVisible: false
+  }
+  componentDidMount(){}
+  
+  dropDownMenu_onHover = () => {
+    this.setState({isBoxVisible:true})
+  }
+
+  dropDownMenu_onLeave = () => {
+    this.setState({isBoxVisible:false})
+  }
+
+  dropDownMenu_onClick = () => {
+    this.setState({isBoxVisible:false})
+  }
+  
   render(props) {
     return (
       <Container>
@@ -36,8 +53,12 @@ export default class Nav extends Component {
           <li>
             <Link to="/characterIntroduction">Character introduction</Link>
           </li>
-          <li className="dropDownMenu"> Router
-            <div>
+          <li 
+            onMouseEnter={ this.dropDownMenu_onHover } 
+            onMouseLeave={ this.dropDownMenu_onLeave } 
+            className={ `dropDownMenu ${this.state.isBoxVisible ? "active" : ""}` } 
+          > Router
+            <div onClick={ this.dropDownMenu_onClick }>
               <ul>
                 <li>
                   <Link to="/RecursivePath">Recursive path</Link>

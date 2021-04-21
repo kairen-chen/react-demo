@@ -6,6 +6,17 @@
   
 }
 
+a:link {
+  color:white;
+}
+a:visited {
+  color: wheat;
+}
+a:hover {
+  color:salmon;
+}
+
+
 .layoutContainer {
   text-align: center;
   background-color: #282c34;
