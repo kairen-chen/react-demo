@@ -11,23 +11,27 @@ import PrivateRoute from './privateRoute/Auth/privateRoute'
 
 // 做個轉場動畫
 import {
-  SwitchTransition,
-  CSSTransition
+  CSSTransition,
+  TransitionGroup
 } from "react-transition-group";
 import "../pages/RouterDemo/AnimatedTransitions.scss"
 
 function router(props) {
   return (
-    <SwitchTransition>
+    <TransitionGroup className="transiotionGroup">
       <CSSTransition
         key={props.location.key}
         classNames="fade"
         timeout={500}
       >
-        {/* // <Switch location={props.location}> */}
+        {/* <Switch location={props.location}> */}
         <Switch>
+        
           {/* component load 方法1. */}
-          <Route exact path = "/" component = {Home}/>
+          {/* component = {Home} */}
+          <Route exact path = "/" render={() => {
+              return <Home/>
+          }}  />
 
           {/* component load 方法2.(注意!! 這樣寫無法讀取props.location) */}
           {/* <Route path="/about">
@@ -37,11 +41,7 @@ function router(props) {
           <Route exact path = "/about" component = {About} />
           <Route path = "/about/:PID" component = {About} />
           <Route path="/login" component={Login} />
-          
 
-          <Route exact path="/RecursivePath">
-            <Redirect to="/RecursivePath/0"/>
-          </Route>
           <Route  path="/RecursivePath/:id" component={RecursivePath} />
 
           <Route path="/Sidebar" component={Sidebar} />
@@ -60,9 +60,8 @@ function router(props) {
           />
           <Route component={ PageNotFound } />
         </Switch>
-       </CSSTransition>
-    </SwitchTransition> 
-
+      </CSSTransition>
+    </TransitionGroup>
   )
 };
 

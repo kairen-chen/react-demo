@@ -43,7 +43,8 @@ class layout extends Component {
   }
 
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環
-  componentDidUpdate(){}
+  componentDidUpdate(){
+  }
 
   // component即將銷毀,DOM被移除，在這階段可以用來清除一些計時器
   componentWillUnmount(){
@@ -79,7 +80,7 @@ class layout extends Component {
     })
   }
 
-  render() {
+  render(pops) {
     return (
       <div className={scoped("layoutContainer")}>
         <Login/>
@@ -89,9 +90,8 @@ class layout extends Component {
           routerToPage={this.state.routerToPage} 
           location={this.props.location}
           userInfo={this.props.userInfo}
-          
+          flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
         />
-
         <div className = {scoped("layout")}>
           <h1>Layout</h1>
           <br/>

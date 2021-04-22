@@ -61,7 +61,7 @@ export default class Nav extends Component {
             <div onClick={ this.dropDownMenu_onClick }>
               <ul>
                 <li>
-                  <Link to="/RecursivePath">Recursive path</Link>
+                  <Link to="/RecursivePath/0">Recursive path</Link>
                 </li>
                 <li>
                   <Link to="/Sidebar">Sidebar</Link>

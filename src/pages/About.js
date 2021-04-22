@@ -56,7 +56,7 @@ function About(props) {
     // 透過setMsg些改msg的值
     // setMsg("change")
     window.previousLocation = props.location;
-  })
+  },[props.location])
 
   
   return (

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import styled from "styled-components";
 
 const Container = styled.div`
   border: 1px solid red;
   margin: 40px 0;
 `;
-export default class Home extends Component {
+class Home extends Component {
   
   state = {
     PID: "s96113123",
@@ -46,3 +47,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withRouter(Home)
