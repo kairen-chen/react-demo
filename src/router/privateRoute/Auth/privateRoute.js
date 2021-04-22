@@ -1,14 +1,14 @@
 import React,{Component} from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-
+import Login from '../../../pages/Login';
 
 class PrivateRoute extends Component {
     componentDidMount() {
         window.previousLocation = this.props.location;
     }
     
-    render() {
+    render(props) {
         let { component: Component, userInfo, ...rest } = this.props;
         return (
             <Route
@@ -18,11 +18,7 @@ class PrivateRoute extends Component {
                     // 已登入: render CharacterIntroduction component 
                     <Component {...props} /> 
                      : 
-                    // 未登入: 跳至page/login.js
-                    <Redirect to={{
-                        pathname: "/login",
-                        state: { referrer: props.location } //需要帶參數到history可以這樣寫
-                    }} />
+                    <Login/>
                 }
             />
         );

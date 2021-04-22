@@ -89,6 +89,7 @@ class layout extends Component {
           routerToPage={this.state.routerToPage} 
           location={this.props.location}
           userInfo={this.props.userInfo}
+          
         />
 
         <div className = {scoped("layout")}>

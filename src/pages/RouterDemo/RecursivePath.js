@@ -5,8 +5,10 @@ import {
   Route,
   Link,
   useParams,
+  useLocation,
   useRouteMatch
 } from "react-router-dom";
+
 
 const PEEPS = [
     { id: 0, name: "Michelle", friends: [1, 2, 3] },
@@ -38,12 +40,13 @@ export default function Person(props) {
             </li>
             ))}
         </ul>
-  
+
         <Switch>
           <Route path={`${url}/:id`}>
             <Person />
           </Route>
         </Switch>
+       
       </div>
     );
   }
