@@ -34,9 +34,9 @@ function About(props) {
        query = useQuery();
 
   // console.log(
-  //   "useLocation",useLocation(),
-  //   "useParams",useParams(),
-  //   "useQuery",useQuery()
+    // "useLocation",useLocation(),
+    // "useParams",useParams(),
+    // "useQuery",useQuery()
   // )
 
   // [msg,setMsg]
@@ -53,6 +53,7 @@ function About(props) {
    * 另characterIntroduction組件有介紹更多
    * */ 
   useEffect(()=>{
+    // console.log("about");
     // 透過setMsg些改msg的值
     // setMsg("change")
     window.previousLocation = props.location;

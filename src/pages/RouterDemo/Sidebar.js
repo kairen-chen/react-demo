@@ -17,18 +17,18 @@ import {
 // order they would appear in a <Switch>.
 const routes = [
   {
-    path: "/",
+    path: "/Sidebar",
     exact: true,  
     sidebar: () => <div style={{ color: "red", margin: "20px" }}>home!</div>,
     main: () => <h2>Home</h2>
   },
   {
-    path: "/bubblegum",
+    path: "/Sidebar/bubblegum",
     sidebar: () => <div style={{ color: "red", margin: "20px" }}>bubblegum!</div>,
     main: () => <h2>Bubblegum</h2>
   },
   {
-    path: "/shoelaces",
+    path: "/Sidebar/shoelaces",
     sidebar: () => <div style={{ color: "red", margin: "20px" }}>shoelaces!</div>,
     main: () => <h2>Shoelaces</h2>
   }
@@ -40,23 +40,24 @@ export default function SidebarExample(props) {
     })
     return (
         <Router>
-            <div style={{ display: "flex", alignSelf: "flex-start" }}>
+            <div>
                 <div
                     style={{
                         width: "40vw",
                         padding: "10px",
-                        background: "#f0f0f0"
+                        background: "#f0f0f0",
+                         marginTop: "40px"
                     }}
                 >
                     <ul style={{ listStyleType: "none", padding: 0 }}>
                         <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/Sidebar">Home</Link>
                         </li>
                         <li>
-                        <Link to="/bubblegum">Bubblegum</Link>
+                        <Link to="/Sidebar/bubblegum">Bubblegum</Link>
                         </li>
                         <li>
-                        <Link to="/shoelaces">Shoelaces</Link>
+                        <Link to="/Sidebar/shoelaces">Shoelaces</Link>
                         </li>
                     </ul>
 

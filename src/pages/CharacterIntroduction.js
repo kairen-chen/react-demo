@@ -33,21 +33,22 @@ function CharacterIntroduction(props) {
      *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
      * */
     dispatch(fetchUsers())
-
-    setIsBlocking(true);
-
     //Try it -->
     // alert(`Component inited or props change (step 2)! ${ props.pToc || '' } `)
     
     // unmount
     return  () => { 
-
       //Try it -->
       // alert("Component leaved or props change (step 1) ")
-      setIsBlocking(false);
     }
   }, [dispatch]);
  
+  useEffect(() => {
+    setIsBlocking(true);
+    return  () => { 
+      setIsBlocking(false);
+    }
+  },[]);
 
   /*
    * refDemo
@@ -55,7 +56,7 @@ function CharacterIntroduction(props) {
    */
   const refDemo = useCallback(node => {
     if (node !== null && userData.users.length > 0) {
-      console.log("get div height : ", node.offsetHeight)
+      // console.log("get div height : ", node.offsetHeight)
       setHeight(node.getBoundingClientRect().height);
     }
   }, [userData.users]);  

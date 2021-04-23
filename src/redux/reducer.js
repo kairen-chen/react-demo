@@ -43,7 +43,7 @@ const reducer = (state = initialState, action) => {
         error: action.data
       })
     case "LOGIN":
-      return Object.assign({}, state, {
+      return  Object.assign({}, state, {
         UserInfo: true
       })
     case "LOGOUT":

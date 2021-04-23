@@ -8,7 +8,7 @@ import RecursivePath from '../pages/RouterDemo/RecursivePath';
 import Sidebar from '../pages/RouterDemo/Sidebar';
 import AnimatedTransitions from '../pages/RouterDemo/AnimatedTransitions';
 import PrivateRoute from './privateRoute/Auth/privateRoute'
-
+import ModalGallery from '../pages/RouterDemo/ModalGallery'
 // 做個轉場動畫
 import {
   CSSTransition,
@@ -24,9 +24,8 @@ function router(props) {
         classNames="fade"
         timeout={500}
       >
-        {/* <Switch location={props.location}> */}
-        <Switch>
-        
+        <Switch location={props.location}>
+        {/* <Switch> */}
           {/* component load 方法1. */}
           {/* component = {Home} */}
           <Route exact path = "/" render={() => {
@@ -50,7 +49,9 @@ function router(props) {
             <Redirect to="/AnimatedTransitions/hsl/10/90/50" />
           </Route>
           <Route path="/AnimatedTransitions/*" component={AnimatedTransitions} />
-          
+          <Route path = "/ModalGallery/:id/:img" component = {ModalGallery} />
+          <Route path = "/ModalGallery" component = {ModalGallery} />
+        
           {/* <Route path="/characterIntroduction" component = {CharacterIntroduction} /> */}
           {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}
           <PrivateRoute

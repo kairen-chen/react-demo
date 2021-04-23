@@ -29,7 +29,7 @@ export default function Person(props) {
     })
 
     return (
-      <div>
+      <div style = {{ marginTop: "40px" }}>
         <h3>{person[0].name}’s Friends</h3>
   
         <ul>

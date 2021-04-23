@@ -66,8 +66,11 @@ export default class Nav extends Component {
                 <li>
                   <Link to="/Sidebar">Sidebar</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/AnimatedTransitions">Animated Transitions</Link>
+                </li> */}
+                <li>
+                  <Link to="/ModalGallery">Modal Gallery</Link>
                 </li>
               </ul>
             </div>
