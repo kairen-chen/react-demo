@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {Component, Suspense} from "react";
 import { connect } from 'react-redux'
 import * as actionCreators from '../redux/action'
 import { withRouter } from "react-router";
@@ -80,18 +80,19 @@ class layout extends Component {
     })
   }
 
-  render(pops) {
+  render(props) {
     return (
       <div className={scoped("layoutContainer")}>
         <Login/>
-
         <Nav/>
-        <RouterView 
-          routerToPage={this.state.routerToPage} 
-          location={this.props.location}
-          userInfo={this.props.userInfo}
-          flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
-        />
+        <Suspense fallback={ <div>Loading...</div> }>
+            <RouterView 
+              routerToPage={this.state.routerToPage} 
+              location={this.props.location}
+              userInfo={this.props.userInfo}
+              flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
+            />
+        </Suspense>
       </div>
 
     );
