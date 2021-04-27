@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback, useMemo} from "react";
 
 import { useSelector, useDispatch  } from "react-redux";
 import { increment, decrement, fetchUsers } from "../redux/action";
 import { Prompt } from "react-router-dom";
+import Loading from "../components/Loading"
 
 import styled from "styled-components";
 
@@ -32,7 +33,9 @@ function CharacterIntroduction(props) {
      *       又functio componet hook useEffect有觀察props,所以layout.js action時
      *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
      * */
-    dispatch(fetchUsers())
+    if(userData.users.length === 0)
+      dispatch(fetchUsers())
+    
     //Try it -->
     // alert(`Component inited or props change (step 2)! ${ props.pToc || '' } `)
     
@@ -41,7 +44,7 @@ function CharacterIntroduction(props) {
       //Try it -->
       // alert("Component leaved or props change (step 1) ")
     }
-  }, [dispatch]);
+  },[dispatch]);
  
   useEffect(() => {
     setIsBlocking(true);
@@ -63,28 +66,35 @@ function CharacterIntroduction(props) {
 
   return (
     <Container>
-      <Prompt
+        <Prompt
           when={isBlocking}
-          message={location =>
-            `即將離開此頁, 為確保資料安全, 記得登出!!`
+          message={location => `即將離開此頁, 為確保資料安全, 記得登出!!` }
+        />
+        這訊息是從 Route props取得 -> {props.routerToPage}
+        <br/>
+        CharacterIntroduction :
+        <br/> 
+        count: {userData.counter}
+        <br/>
+        <button onClick={() => dispatch(increment())}> + </button>
+        <button onClick={() => dispatch(decrement())}> - </button>
+        <div ref={refDemo}>
+          <h2>The height of div is {Math.round(_height)}px</h2>
+          {
+            userData &&
+            userData.users &&
+            userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
           }
-      />
-      這訊息是從 Route props取得 -> {props.routerToPage}
-      <br/> 
-      CharacterIntroduction :
-      <br/> 
-      count: {userData.counter}
-      <br/>
-      <button onClick={() => dispatch(increment())}> + </button>
-      <button onClick={() => dispatch(decrement())}> - </button>
-      <div ref={refDemo}>
-        <h2>The height of div is {Math.round(_height)}px</h2>
-        {
-          userData &&
-          userData.users &&
-          userData.users.map((user,index) => <p key = {index}>{user.name}</p>)
-        }
-      </div>
+          <Loading 
+            component = { 
+              (
+                userData &&
+                userData.users &&
+                userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
+              )
+            }
+          />
+        </div>
     </Container>
   );
 }
