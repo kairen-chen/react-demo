@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo} from "react";
+import React, { useEffect, useState, useCallback, useLayoutEffect} from "react";
 
 import { useSelector, useDispatch  } from "react-redux";
 import { increment, decrement, fetchUsers } from "../redux/action";
@@ -13,11 +13,11 @@ const Container = styled.div`
 `;
 
 function CharacterIntroduction(props) {
-
   const userData = useSelector(state => state),
         dispatch = useDispatch(),
         [_height, setHeight] = useState(0);
   let [isBlocking, setIsBlocking] = useState(false);
+
          
   /**
    * useEffect順序-> render後執行
@@ -27,15 +27,15 @@ function CharacterIntroduction(props) {
    * 
    * Try it --> [userData.counter] 代表這參數一改變時觸發(mount、unmount)
    * */ 
-  useEffect(() => {
+  useEffect (() => {
     /**
      * 注意: 因class component綁store的方式是透過props,
      *       又functio componet hook useEffect有觀察props,所以layout.js action時
      *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
      * */
-    if(userData.users.length === 0)
+    if(userData.users.length === 0) 
       dispatch(fetchUsers())
-    
+        
     //Try it -->
     // alert(`Component inited or props change (step 2)! ${ props.pToc || '' } `)
     
@@ -45,8 +45,9 @@ function CharacterIntroduction(props) {
       // alert("Component leaved or props change (step 1) ")
     }
   },[dispatch]);
- 
+
   useEffect(() => {
+    // console.log("角色介紹");
     setIsBlocking(true);
     return  () => { 
       setIsBlocking(false);
@@ -63,7 +64,6 @@ function CharacterIntroduction(props) {
       setHeight(node.getBoundingClientRect().height);
     }
   }, [userData.users]);  
-
   return (
     <Container>
         <Prompt
@@ -74,24 +74,17 @@ function CharacterIntroduction(props) {
         <br/>
         CharacterIntroduction :
         <br/> 
-        count: {userData.counter}
+        count: {userData.counter} {userData.counter_1}
         <br/>
         <button onClick={() => dispatch(increment())}> + </button>
         <button onClick={() => dispatch(decrement())}> - </button>
         <div ref={refDemo}>
           <h2>The height of div is {Math.round(_height)}px</h2>
-          {
-            userData &&
-            userData.users &&
-            userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
-          }
           <Loading 
-            component = { 
-              (
-                userData &&
-                userData.users &&
-                userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
-              )
+            component = {
+                  userData &&
+                  userData.users &&
+                  userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
             }
           />
         </div>

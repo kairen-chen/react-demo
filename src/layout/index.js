@@ -89,8 +89,8 @@ class layout extends Component {
             <RouterView 
               routerToPage={this.state.routerToPage} 
               location={this.props.location}
-              userInfo={this.props.userInfo}
-              flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
+              // userInfo={this.props.userInfo}
+              // flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
             />
         </Suspense>
       </div>

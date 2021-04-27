@@ -17,6 +17,7 @@ import {
 import "../pages/RouterDemo/AnimatedTransitions.scss"
 
 function router(props) {
+  // console.log("layout 傳過來的 props",props)
   return (
     <TransitionGroup className="transiotionGroup">
       <CSSTransition
@@ -37,7 +38,12 @@ function router(props) {
             <About />
           </Route> */}
 
-          <Route exact path = "/about" component = {About} />
+          <Route exact path = "/about"
+            // component = {About} 
+            render={() => 
+              <About {...props} /> 
+          }
+          />
           <Route path = "/about/:PID" component = {About} />
           <Route path="/login" component={Login} />
 
@@ -57,7 +63,9 @@ function router(props) {
           <PrivateRoute
             exact 
             path="/characterIntroduction" 
-            component = { () => CharacterIntroduction(props) } 
+            // component = { () => CharacterIntroduction(props) } 
+            {...props}
+            component = {CharacterIntroduction}
           />
           <Route component={ PageNotFound } />
         </Switch>

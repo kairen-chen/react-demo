@@ -9,20 +9,21 @@ class PrivateRoute extends Component {
     }
     
     render(props) {
-        let { component: Component, userInfo, ...rest } = this.props;
+        let { component: Component, userInfo, ...routeConfig } = this.props;
         return (
            
                 <Route
-                    {...rest}
-                    render={props => 
+                    {...routeConfig}
+                    render={() => 
                         userInfo ? 
                         // 已登入: render CharacterIntroduction component 
-                        <Component {...props} /> 
+                        //1. this.props會拿到layout那傳過來的值 
+                        //2. props會拿到history
+                        <Component {...this.props} /> 
                         : 
                         <Login/>
                     }
                 />
-           
         );
     }
 }

@@ -10,7 +10,8 @@ import {
   useParams
 } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "../redux/action";
 
 import styled from 'styled-components';
 
@@ -27,7 +28,8 @@ function useQuery() {
 
 function About(props) {
   //從reducer取得state
-  const userData = useSelector(state => state)
+  const userData = useSelector(state => state),
+        dispatch = useDispatch();
 
   let  {state} = useLocation(),
        {PID} = useParams(),
@@ -59,10 +61,13 @@ function About(props) {
     window.previousLocation = props.location;
   },[props.location])
 
-  
   return (
     <Container>
-        
+        <button onClick={() => dispatch(increment())}> + </button>
+        <button onClick={() => dispatch(decrement())}> - </button>
+        <br/>
+        這訊息是從 Route props取得 -> {props.routerToPage}
+        <br/>
         About
         {props.pToc}
         <br/>
