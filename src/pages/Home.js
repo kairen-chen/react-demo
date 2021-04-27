@@ -13,6 +13,7 @@ class Home extends Component {
   };
   
   componentDidMount() {
+    console.log(this.props.match)
     window.previousLocation = this.props.location;
   }
   

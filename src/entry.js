@@ -8,7 +8,7 @@ import Layout from './layout';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename="/酷">
       <Layout />
     </Router>
   </Provider>
