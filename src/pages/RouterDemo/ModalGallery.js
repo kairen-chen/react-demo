@@ -1,9 +1,4 @@
-import React, 
-  {
-    useState,
-    useEffect
-  } 
-from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,9 +17,10 @@ import {
 // "visit the gallery" and click on the colors. Note the URL and
 // the component are the same as before but now we see them
 // inside a modal on top of the gallery screen.
-export default function ModalGalleryExample() {
+export default function ModalGalleryExample(props) {
+  window.previousLocation = props.location;
   return (
-    <Router>
+    <Router basename={props.baseURL}>
       <ModalSwitch />
     </Router>
   );
@@ -32,7 +28,6 @@ export default function ModalGalleryExample() {
 
 function ModalSwitch(props) {
   let location = useLocation();
-
   // This piece of state is set when one of the
   // gallery links is clicked. The `background` state
   // is the location that we were at when one of
@@ -41,7 +36,6 @@ function ModalSwitch(props) {
   // we show the gallery in the background, behind
   // the modal.
   let background = location.state && location.state.background;
-
   return (
     <div style = {{ 
         marginTop: "40px"
@@ -192,7 +186,8 @@ function Modal() {
         right: 0,
         background: "rgba(0, 0, 0, 0.55)",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        zIndex: 1
       }}
     >
       <div

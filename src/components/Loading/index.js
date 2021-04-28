@@ -5,9 +5,9 @@ import styles from "./loading.scss";
 let scoped = classNames.bind(styles);
 
 class Loading extends Component {
-  render(props){
+  render(){
     let templete;
-    this.props.LoadingFlag?
+    !this.props.component || this.props.LoadingFlag?
     templete = <img src = {'../../logo.svg'} className = {scoped("loadingIcon")} alt = "Loading" />
     :
     templete = this.props.component;

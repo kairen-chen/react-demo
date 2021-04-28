@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useLayoutEffect} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 import { useSelector, useDispatch  } from "react-redux";
 import { increment, decrement, fetchUsers } from "../redux/action";
@@ -44,7 +44,7 @@ function CharacterIntroduction(props) {
       //Try it -->
       // alert("Component leaved or props change (step 1) ")
     }
-  },[dispatch]);
+  },[dispatch,userData.users]);
 
   useEffect(() => {
     // console.log("角色介紹");

@@ -1,4 +1,4 @@
-import {Component, Suspense} from "react";
+import { Component } from "react";
 import { connect } from 'react-redux'
 import * as actionCreators from '../redux/action'
 import { withRouter } from "react-router";
@@ -6,8 +6,9 @@ import { withRouter } from "react-router";
 // component
 import RouterView from "../router/";
 import Nav from "../components/Nav";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 import Login from "../components/Login";
 
 import classNames from "classnames/bind";
@@ -16,7 +17,6 @@ import styles from "./layout.css";
 // for IE 11 !!
 import 'url-search-params-polyfill';
 import 'babel-polyfill';
-
 
 let scoped = classNames.bind(styles);
 
@@ -85,16 +85,62 @@ class layout extends Component {
       <div className={scoped("layoutContainer")}>
         <Login/>
         <Nav/>
-        <Suspense fallback={ <div>Loading...</div> }>
-            <RouterView 
-              routerToPage={this.state.routerToPage} 
-              location={this.props.location}
-              // userInfo={this.props.userInfo}
-              // flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
-            />
-        </Suspense>
-      </div>
+        <RouterView 
+          routerToPage={this.state.routerToPage} 
+          location={this.props.location}
+          baseURL={this.props.baseURL}
+          // userInfo={this.props.userInfo}
+          // flag={(window.previousLocation !== undefined && (window.previousLocation.pathname === this.props.location.pathname))}
+        />
+        <div style={{display: "flex"}}>
+          <Header
+            cToc = { this.state.cTocName } 
+          > 
+            {/* slot */}
+            <div>
+              <img src = {process.env.PUBLIC_URL + '/logo.svg'} className = {scoped("App-logo")} alt = "logo" />
+              <img src = {'../logo.svg'} className = {scoped("App-logo")} alt = "logo" />
+              <p>
+                Edit <code>src/layout.js</code> and save to reload.
+              </p>
+              <a
+                className = {scoped("App-link")}
+                target = "_blank"
+                rel = "noopener noreferrer"
+                href = "https://reactrouter.com/web/example/basic"
+              >
+                Learn React router
+              </a>
+              <hr/>
+              <a
+                className = {scoped("App-link")}
+                target = "_blank"
+                rel = "noopener noreferrer"
+                href = "https://medium.com/@shizukuichi/100-%E8%A1%8C%E7%A7%92%E6%87%82-react-redux-middleware-52ac75d169fe"
+              >
+                Learn React redux
+              </a>
+              <h1 className = {scoped("title")}> scoped css test </h1>
+            </div>
+            <button> This is children props </button>
+          </Header>
 
+          <div className = {scoped("layout")}>
+            <h1>Layout</h1>
+            <br/>
+            class component get store.counter value : { this.props.store_counter }
+            <button onClick = {this.handleClick.bind(this,"Layout value demo1")}>Layout傳component Demo1</button>
+            <button onClick = {()=>this.handleClick("Layout value demo2")}>Layout傳component Demo2</button>
+            {this.state.cTopName?`子傳父 Demo --> ${this.state.cTopName}` : ''}
+          </div>
+
+          <Footer
+            pToc = { this.state.pTocName }
+            handleCToP = {this.handleCToP}
+            handleCToC = {this.handleCToC}
+          />
+        </div>  
+      </div>
     );
   }
 }
