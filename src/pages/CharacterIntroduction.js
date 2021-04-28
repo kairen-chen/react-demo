@@ -81,10 +81,10 @@ function CharacterIntroduction(props) {
         <div ref={refDemo}>
           <h2>The height of div is {Math.round(_height)}px</h2>
           <Loading 
-            component = {
-                  userData &&
-                  userData.users &&
-                  userData.users.map((user,index) => <p key = {index}>{user.title}</p>)
+            component = { 
+                userData &&
+                userData.users &&
+                userData.users.map((user,index) => <p key = {index}>{user[user.name ? "name" : "title" ]}</p>)
             }
           />
         </div>
