@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Nav.scss";
 import styled from "styled-components";
+import { withRouter } from "react-router";
 
 const Container = styled.div`
   width: 100%;
@@ -22,7 +23,7 @@ const Container = styled.div`
     }
   }
 `;
-export default class Nav extends Component {
+class Nav extends Component {
   state = {
     isBoxVisible: false
   }
@@ -40,12 +41,20 @@ export default class Nav extends Component {
     this.setState({isBoxVisible:false})
   }
   
+  handleRedirect = (go) =>{
+    if(this.props.location.pathname !== go)
+      this.props.history.push({
+        pathname: go
+      });
+  }
+  
   render(props) {
     return (
       <Container>
         <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
+          <li onClick = { () => this.handleRedirect('/')}>
+            {/* <NavLink to="/">Home</NavLink> */}
+            Home
           </li>
           <li>
             <NavLink to="/about">About</NavLink>
@@ -80,3 +89,4 @@ export default class Nav extends Component {
     );
   }
 }
+export default withRouter(Nav)
