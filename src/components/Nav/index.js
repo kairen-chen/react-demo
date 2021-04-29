@@ -53,7 +53,6 @@ class Nav extends Component {
       <Container>
         <ul>
           <li onClick = { () => this.handleRedirect('/')}>
-            {/* <NavLink to="/">Home</NavLink> */}
             Home
           </li>
           <li>

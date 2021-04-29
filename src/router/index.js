@@ -35,9 +35,11 @@ function router(props) {
               {/* component load 方法1. */}
               {/* <Route exact path = "/" component = {Home} /> */}
               {/* component load 方法2.(注意!! 這樣寫無法讀取props.location) */}
-              <Route exact path = "/" render={() => {
+              <Route exact path = "/" 
+                render={() => {
                   return <Home />
-              }}  />
+                }}
+              />
               <Route path = "/about/:PID" component = {About} />
               <Route path = "/about"
                 render={() => 
@@ -70,7 +72,16 @@ function router(props) {
                 {...props}
                 component = {CharacterIntroduction}
               />
-              <Route component={PageNotFound} />
+              <Route 
+                render={() => 
+                  <PageNotFound {...props} /> 
+                }
+                // children={
+                //   ( match ) => {
+                //     return <PageNotFound {...match} />
+                //   }
+                // }
+              />
             </Switch>
           </Suspense>
         </CSSTransition>
