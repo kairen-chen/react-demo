@@ -14,20 +14,20 @@ const
     fontsize: 20px;
 
     p {
-      color:${props => props.theme.main};
+      color:${props => props.theme.themeColor};
     }
   `;
 
 Container.defaultProps = {
-  theme:{
-    main: "palevioletred"
+  theme : {
+    themeColor: "palevioletred"
   }
 }
 
 
 export default function PageNotFound(props) {
   // console.log(props)
-  const [theme, setTheme] = useState(Container.defaultProps.theme);
+  const [theme = {}, setTheme] = useState( Container.defaultProps.theme );
   const history = useHistory();
   useEffect(()=>{
     window.previousLocation = props.location;
@@ -44,9 +44,17 @@ export default function PageNotFound(props) {
     <ThemeProvider theme={theme}>
       <Container>
         <label htmlFor="changeTheme"> 換膚 </label>
-        <input id="changeTheme" type="checkbox" onChange = {(e)=>{
-          setTheme(()=>{ return {main : (e.target.checked ? Container.defaultProps.theme.main : "cornflowerblue") } })
-        }} />
+        <input
+          type="checkbox"
+          id="changeTheme"  
+          onChange = {
+            (e)=>{
+              setTheme(()=>{
+                return {themeColor : (!e.target.checked ? Container.defaultProps.theme.themeColor : "cornflowerblue")}
+              })
+            }
+          } 
+        />
         <br/>
         你確定有這條路 ?? 
         <p>✨ {window.location.href}</p>
