@@ -11,11 +11,12 @@ import { useHistory } from "react-router";
 const Container = styled.div`
     border:1px solid red;
     margin: 40px 0;
-    fontsize: 20px;
+    font-size: 20px;
     border-radius:${props => props.theme[props.theme.mainColor].borderRadius};
-    border-Width:${props => props.theme[props.theme.mainColor].borderWidth};
+    border-width:${props => props.theme[props.theme.mainColor].borderWidth};
     background-color: ${props => props.theme[props.theme.mainColor].backgroundColor};
     color:${props => props.theme[props.theme.mainColor].textColor};
+
     p {
       color:${props => props.theme[props.theme.mainColor].textColor};
     }
@@ -40,8 +41,7 @@ Container.defaultProps = {
 
 export default function PageNotFound( props ) {
   // console.log(props)
-  const [themeColor = {}, setMainColor] = useState( Container.defaultProps.theme),
-        // [main, setMain] =  useState( Container.defaultProps.main ),
+  const [themeColor = {}, setMainColor] = useState( Container.defaultProps.theme ),
         history = useHistory();
   useEffect( ()=>{
     window.previousLocation = props.location;
@@ -53,6 +53,7 @@ export default function PageNotFound( props ) {
   
   return (
     <ThemeProvider theme = { themeColor }>
+      
       <Container>
         Sorry,查無此路 ->
         <p>✨ {window.location.href} ✨</p>
@@ -65,7 +66,6 @@ export default function PageNotFound( props ) {
           onChange = {
             ( e )=>{
               setMainColor(()=>{
-                console.log(themeColor);
                 return Object.assign({}, themeColor, {
                   mainColor: (e.target.checked ? "light" : "dark")
                 })
@@ -74,7 +74,21 @@ export default function PageNotFound( props ) {
           } 
         />
       </Container>
+
+      <Test component={Container} />
     </ThemeProvider>
   );
 }
 
+
+
+function Test( props ) {
+  useEffect( ()=>{
+    console.log(props.component._foldedDefaultProps);
+  } );
+  return ( 
+    <props.component> 
+      可以把styled-component整組傳給component
+    </props.component> 
+  );
+}

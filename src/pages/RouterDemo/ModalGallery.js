@@ -17,7 +17,7 @@ import {
 // "visit the gallery" and click on the colors. Note the URL and
 // the component are the same as before but now we see them
 // inside a modal on top of the gallery screen.
-export default function ModalGalleryExample(props) {
+export default function ModalGallery(props) {
   window.previousLocation = props.location;
   return (
     <Router basename={props.baseURL}>

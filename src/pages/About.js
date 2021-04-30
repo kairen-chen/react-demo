@@ -59,7 +59,7 @@ function About(props) {
     // setMsg("change")
     window.previousLocation = props.location;
   },[props.location])
-
+  
   return (
     <Container>
         <button onClick={() => dispatch(increment())}> + </button>
