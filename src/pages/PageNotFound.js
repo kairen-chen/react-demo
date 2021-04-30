@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styled, {ThemeProvider, css} from "styled-components";
+import styled, {ThemeProvider} from "styled-components";
 import React,
   {
     useState
@@ -8,38 +8,40 @@ from "react";
 import { useHistory } from "react-router";
 
 
-
-const 
-  Container = styled.div`
-    border: 1px solid red;
+const Container = styled.div`
+    border:1px solid red;
     margin: 40px 0;
     fontsize: 20px;
+    border-radius:${props => props.theme[props.theme.mainColor].borderRadius};
+    border-Width:${props => props.theme[props.theme.mainColor].borderWidth};
+    background-color: ${props => props.theme[props.theme.mainColor].backgroundColor};
+    color:${props => props.theme[props.theme.mainColor].textColor};
     p {
-      color:${props => props.theme.themeColor};
+      color:${props => props.theme[props.theme.mainColor].textColor};
     }
-
-    // 淺色主題
-    ${ props => props.main && css`
-      border-width: 2px 3px 2px 5px;
-      border-radius: 90% 6% 93% 5% / 5% 94% 7% 95%;
-      transform: rotate(2deg);
-      color: black;
-      background-color: white;
-    `}
   `;
 
 Container.defaultProps = {
-  main: "",
-  theme : {
-    themeColor: "palevioletred"
+  theme: {
+    mainColor:"dark",
+    light: {
+      backgroundColor: 'white',
+      textColor: 'cornflowerblue',
+      borderRadius: "90% 6% 93% 5% / 5% 94% 7% 95%",
+      borderWidth: "2px 3px 2px 5px"
+    },
+    dark: {
+      backgroundColor: 'black',
+      textColor: 'palevioletred',
+    }
   }
 }
 
 
 export default function PageNotFound( props ) {
   // console.log(props)
-  const [theme = {}, setTheme] = useState( Container.defaultProps.theme ),
-        [main, setMain] =  useState( Container.defaultProps.main ),
+  const [themeColor = {}, setMainColor] = useState( Container.defaultProps.theme),
+        // [main, setMain] =  useState( Container.defaultProps.main ),
         history = useHistory();
   useEffect( ()=>{
     window.previousLocation = props.location;
@@ -50,8 +52,8 @@ export default function PageNotFound( props ) {
   },[ props.location, history ] )
   
   return (
-    <ThemeProvider theme = { theme }>
-      <Container main = { main }>
+    <ThemeProvider theme = { themeColor }>
+      <Container>
         Sorry,查無此路 ->
         <p>✨ {window.location.href} ✨</p>
         <br/>
@@ -62,10 +64,12 @@ export default function PageNotFound( props ) {
           hidden
           onChange = {
             ( e )=>{
-              setTheme( ()=>{
-                setMain( () => e.target.checked ? "light" : "")
-                return { themeColor : (!e.target.checked ? Container.defaultProps.theme.themeColor : "cornflowerblue") }
-              } )
+              setMainColor(()=>{
+                console.log(themeColor);
+                return Object.assign({}, themeColor, {
+                  mainColor: (e.target.checked ? "light" : "dark")
+                })
+              })
             }
           } 
         />
