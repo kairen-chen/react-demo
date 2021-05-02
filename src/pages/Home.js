@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import styled from "styled-components";
+import styled, {ThemeProvider} from "styled-components";
 
 const Container = styled.div`
   border: 1px solid red;
   margin: 40px 0;
+  border-radius:${props => props.theme[props.theme.mainColor].borderRadius};
+  border-width:${props => props.theme[props.theme.mainColor].borderWidth};
+  background-color: ${props => props.theme[props.theme.mainColor].backgroundColor};
+  color:${props => props.theme[props.theme.mainColor].textColor};
 `;
+
 class Home extends Component {
   
   state = {
     PID: "s96113123",
   };
-  
+
   componentDidMount() {
     console.log("class component get URL information :" , this.props.match)
     window.previousLocation = this.props.location;
@@ -33,17 +38,19 @@ class Home extends Component {
 
   render() {
     return (
-      <Container>
-        Home
-        <div>
-          <button onClick={this.handlePush.bind(this)}>RouterPush state</button>
-        </div>
-        <div>
-          <button onClick={this.handleSendUrlParameters.bind(this)}>
-            URL Parameters
-          </button>
-        </div>
-      </Container>
+      <ThemeProvider theme = { this.props.theme }>
+        <Container>
+          Home
+          <div>
+            <button onClick={this.handlePush.bind(this)}>RouterPush state</button>
+          </div>
+          <div>
+            <button onClick={this.handleSendUrlParameters.bind(this)}>
+              URL Parameters
+            </button>
+          </div>
+        </Container>
+      </ThemeProvider>
     );
   }
 }

@@ -5,12 +5,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 // import { HashRouter as Router } from 'react-router-dom';
 import Layout from './layout';
 
+
+
 const baseURL = "/BaseUrlDemo";
 
 ReactDOM.render(
   <Provider store={store}>
     <Router basename={baseURL}>
-    {/* <Router> */}
+      {/* <Router> */}
       <Layout baseURL={baseURL}/>
     </Router>
   </Provider>

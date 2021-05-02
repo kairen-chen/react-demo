@@ -22,27 +22,10 @@ const Container = styled.div`
     }
   `;
 
-Container.defaultProps = {
-  theme: {
-    mainColor:"dark",
-    light: {
-      backgroundColor: 'white',
-      textColor: 'cornflowerblue',
-      borderRadius: "90% 6% 93% 5% / 5% 94% 7% 95%",
-      borderWidth: "2px 3px 2px 5px"
-    },
-    dark: {
-      backgroundColor: 'black',
-      textColor: 'palevioletred',
-    }
-  }
-}
 
 
 export default function PageNotFound( props ) {
-  // console.log(props)
-  const [themeColor = {}, setMainColor] = useState( Container.defaultProps.theme ),
-        history = useHistory();
+  const history = useHistory();
   useEffect( ()=>{
     window.previousLocation = props.location;
 
@@ -52,29 +35,13 @@ export default function PageNotFound( props ) {
   },[ props.location, history ] )
   
   return (
-    <ThemeProvider theme = { themeColor }>
-      
+    <ThemeProvider theme = { props.theme }>
       <Container>
         Sorry,查無此路 ->
         <p>✨ {window.location.href} ✨</p>
         <br/>
         <label htmlFor = "changeTheme"> "都來這了,點我試試" </label>
-        <input
-          type = "checkbox"
-          id = "changeTheme"
-          hidden
-          onChange = {
-            ( e )=>{
-              setMainColor(()=>{
-                return Object.assign({}, themeColor, {
-                  mainColor: (e.target.checked ? "light" : "dark")
-                })
-              })
-            }
-          } 
-        />
       </Container>
-
       <Test component={Container} />
     </ThemeProvider>
   );
