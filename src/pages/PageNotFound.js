@@ -1,12 +1,7 @@
 import { useEffect } from "react";
 import styled, {ThemeProvider} from "styled-components";
-import React,
-  {
-    useState
-  }
-from "react";
+import React from "react";
 import { useHistory } from "react-router";
-
 
 const Container = styled.div`
     border:1px solid red;
