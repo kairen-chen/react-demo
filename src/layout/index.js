@@ -13,33 +13,13 @@ import Login from "../components/Login";
 
 import classNames from "classnames/bind";
 import styles from "./layout.css";
-import styled, {ThemeProvider} from "styled-components";
-
+import {ThemeProvider} from "styled-components";
+import Container from "./layout_css";
 // for IE 11 !!
 import 'url-search-params-polyfill';
 import 'babel-polyfill';
 
 let scoped = classNames.bind(styles);
-
-const Container = styled.div`
-    background-color: ${props => props.theme[props.theme.mainColor].backgroundColor};
-  `;
-Container.defaultProps = {
-    theme: {
-      mainColor:"dark",
-      light: {
-        backgroundColor: '#b9b09c',
-        textColor: 'cornflowerblue',
-        borderRadius: "90% 6% 93% 5% / 5% 94% 7% 95%",
-        borderWidth: "2px 3px 2px 5px"
-      },
-      dark: {
-        backgroundColor: '#282c34',
-        textColor: 'palevioletred',
-      }
-    }
-  };
-
 class layout extends Component {
 
   state = {
