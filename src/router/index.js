@@ -1,4 +1,4 @@
-import {Suspense, lazy} from "react";
+import { Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import CharacterIntroduction from "../pages/CharacterIntroduction";

@@ -5,10 +5,11 @@ import styled, {ThemeProvider} from "styled-components";
 const Container = styled.div`
   border: 1px solid red;
   margin: 40px 0;
+  color:${props => props.theme[props.theme.mainColor].textColor};
+  border-color:${props => props.theme[props.theme.mainColor].borderColor};
   border-radius:${props => props.theme[props.theme.mainColor].borderRadius};
   border-width:${props => props.theme[props.theme.mainColor].borderWidth};
   background-color: ${props => props.theme[props.theme.mainColor].backgroundColor};
-  color:${props => props.theme[props.theme.mainColor].textColor};
 `;
 
 class Home extends Component {
