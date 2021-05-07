@@ -1,0 +1,35 @@
+ul{
+    position: relative;
+    cursor: pointer;
+    li.dropDownMenu{
+        color: black;
+        div{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: 0px;
+            background: black;
+            opacity: 0;
+            transition: opacity .8s;
+            z-index: 1;
+            ul{
+                display: none;
+                white-space: nowrap;
+                font-size: 20px;
+                padding: 50px 10px;
+                display: none;
+                background: black;
+                text-align: left;
+            }
+        }
+        &.active div{
+            opacity: 1;
+            transition: opacity 1s;
+            ul{
+                display: block;
+            }
+        }
+    }
+    
+}

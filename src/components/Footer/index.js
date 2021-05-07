@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 /**
  * css scoped 方法1.
  * 
- * npm run eject //打開wp config設定檔
+ * npm run eject //打開webpack.config.js設定檔
  * 找到wp.config.js內大概line:470
  * use: getStyleLoaders({
  *              加入modules
@@ -38,6 +38,8 @@ import React,{Component} from 'react';
 import styled, { css } from 'styled-components';
 const Container = styled.div`
   border: 1px solid red;
+  margin: 20px 10px;
+  overflow: hidden;
 `
 
 const Title = styled.h1`
@@ -60,7 +62,8 @@ export default class Footer extends Component {
   //   this.state = {
   //     name: "Kairen"
   //   }
-  //   this.handleInputText = this.handleInputText.bind(this)
+  //   //需要.bind的原因:es6 class寫法會讓this指向el本身,非react實體
+    // this.handleInputText = this.handleInputText.bind(this)
 
     /**
      * 如果是要call父層方法的事件,會在父層import conponent時呼叫一次,
@@ -86,7 +89,7 @@ export default class Footer extends Component {
   // babel會幫忙轉譯寫法 方法2.
   state = {
     name: "Kairen",
-    cTopValue: "我是Home(子)",
+    cTopValue: "footer value",
     /* 迴圈Demo */
     UserDate: [
       {
@@ -106,26 +109,35 @@ export default class Footer extends Component {
     // react的值要用setState設定
     this.setState({[name]: value});
   };
+  // 不使用雙箭頭拿target的寫法, val只會拿最後一個
+  // handleInputText =  (val, e) => {
+  //   console.log(val, e)
+  // };
 
   // 子傳父Demo
-  handleCToP(){
+  // handleCToP(){
+  //   this.props.handleCToP(`${this.state.cTopValue}`);
+  // };
+
+  handleCToP = () => {
     this.props.handleCToP(`${this.state.cTopValue}`);
   };
 
 
+
   // 子傳子Demo
   handleCToC(){
-    this.props.handleCToC(this.state.cTopValue);
+    this.props.handleCToC(`${this.state.cTopValue}`);
   };
 
-  render(props){
+  render(){
     // console.log("Footer props: ", this.props);
 
     return(
       <Container>
-
+        <h1>Footer</h1>
         {/* props Demo */}
-        <h1> {this.props.pToc ? `父傳子 Demo --> ${this.props.pToc}` : ""} </h1>
+        <h1> {this.props.pToc ? `component get value of Layout --> ${this.props.pToc}` : ""} </h1>
 
 
         {/* scoped css Demo */}
@@ -138,6 +150,7 @@ export default class Footer extends Component {
         <InputText 
           name = "name" 
           value = { this.state.name }  
+          // onChange = { this.handleInputText.bind( "test", this) }
           onChange = { this.handleInputText("test") }
         />
         <Title>我是 { this.state.name } </Title>
@@ -159,11 +172,10 @@ export default class Footer extends Component {
         <br/>
         
         {/* props Demo */}
+        <button onClick = {this.handleCToP}>子傳父Demo0</button>
         <button onClick = {this.handleCToP.bind(this)}>子傳父Demo1</button>
         <button onClick={()=>{this.props.handleCToP("子傳父")}} >子傳父Demo2</button>
         <button onClick = {this.handleCToC.bind(this)}>子傳子Demo</button>
-        
-        
 
       </Container>
     ); 

@@ -1,17 +1,17 @@
 import React,
   {
-    Component, 
     useState,
     useEffect
   }
 from "react";
 
 import { 
-  withRouter, 
   useLocation,
   useParams
 } from "react-router-dom";
-import {  useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "../redux/action";
 
 import styled from 'styled-components';
 
@@ -19,65 +19,32 @@ const
   Container = styled.div`
     border: 1px solid red;
     margin:40px 0;
-  `
-  ;
-
-// class About extends Component {
-//   state = {
-//     message:"",
-//     pid:""
-//   }
-//   componentDidMount(){
-//     console.log(this.props)
-
-//     const { state } = this.props.location;
-
-//     const msg = 
-//           typeof(state) === "object" && 
-//           state.hasOwnProperty('message') ? 
-//           state.message : "";
-
-//     this.setState({message: msg});
-
-//   }
-//   render() {
-//     const { message } = this.state,
-//           { pid } = this.props.match.params; 
-//     return (
-//       <Container>
-
-//         About
-//         <br/>
-//         {message ? `Get value from router --> ${message}` : ""}
-
-//         {pid ? `Get PID from url --> ${pid}` : ""}
-//       </Container>
-//     )
-//   }
-// }
-// export default withRouter(About);
+  `;
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function About() {
+function About(props) {
   //從reducer取得state
-  const userData = useSelector(state => state)
+  const userData = useSelector(state => state),
+        dispatch = useDispatch();
 
   let  {state} = useLocation(),
        {PID} = useParams(),
        query = useQuery();
 
   // console.log(
-  //   "useLocation",useLocation(),
-  //   "useParams",useParams(),
-  //   "useQuery",useQuery()
+    // "useLocation",useLocation(),
+    // "useParams",useParams(),
+    // "useQuery",useQuery()
   // )
 
-  const [msg,setMsg] = useState(()=>{
+  // [msg,setMsg]
+  const [msg] = useState(()=>{
     return state ? state.message : ""
   });
+
 
   /**
    * 呼叫 useEffect 時，你告訴 React 刷新 DOM 變動之後運行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state 
@@ -87,17 +54,23 @@ function About() {
    * 另characterIntroduction組件有介紹更多
    * */ 
   useEffect(()=>{
+    // console.log("about");
+    // 透過setMsg些改msg的值
     // setMsg("change")
-  })
-
-
+    window.previousLocation = props.location;
+  },[props.location])
   
   return (
     <Container>
-
-        About
+        <button onClick={() => dispatch(increment())}> + </button>
+        <button onClick={() => dispatch(decrement())}> - </button>
         <br/>
-        {userData.counter}
+        這訊息是從 Route props取得 -> {props.routerToPage}
+        <br/>
+        About
+        {props.pToc}
+        <br/>
+        count: {userData.counter}
 
         {/* if、else */}
         {
