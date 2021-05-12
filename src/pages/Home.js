@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import styled, {ThemeProvider} from "styled-components";
-
+import { setName } from "../redux-saga/actions"
+import { connect } from 'react-redux';
 
 const Container = styled.div`
   border: 1px solid red;
@@ -20,8 +21,11 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    console.log("class component get URL information :" , this.props.match)
-    window.previousLocation = this.props.location;
+    const {match, setName, location} = this.props;
+    console.log("class component get URL information :" , match)
+    window.previousLocation = location;
+    // saga Demo
+    setName({name: "jaredpalmer"}, null);
   }
   
   handlePush() {
@@ -51,10 +55,29 @@ class Home extends Component {
               URL Parameters
             </button>
           </div>
+          
+          <div style={{"fontSize" : "10px", "textAlign" : "left"}}>
+            <h1>saga demo</h1>
+            <pre>
+              {JSON.stringify(this.props.profile, (key,value) => {
+                  return value
+              }, 4)}
+            </pre>
+          </div>
         </Container>
       </ThemeProvider>
     );
   }
 }
 
-export default withRouter(Home)
+const mapStateToProps = state => {
+  return {
+    profile: state.profile
+  };
+};
+
+const mapDispatchToProps = {
+    setName 
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

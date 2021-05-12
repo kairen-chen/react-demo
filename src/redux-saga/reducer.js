@@ -11,5 +11,5 @@ const reducer = (state = { profile: null }, action) => {
     }
   };
   
-  export default reducer;
+export default reducer;
   
