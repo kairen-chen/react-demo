@@ -35,7 +35,7 @@ function router(props) {
               {/* component load 方法1. */}
               {/* <Route exact path = "/" component = {Home} /> */}
               {/* component load 方法2.(注意!! 這樣寫無法讀取props.location) */}
-              <Route exact path = "/" 
+              <Route exact path = "/BaseUrlDemo" 
                 render={() => {
                   return <Home {...props}/>
                 }}
