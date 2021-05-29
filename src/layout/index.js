@@ -84,7 +84,7 @@ class layout extends Component {
     return (
       <ThemeProvider theme = { this.state.themeConfig }>
           <Container>
-            <div className={scoped("layoutContainer")}> @@@
+            <div className={scoped("layoutContainer")}> @@
   {/* ------------------------------------ */}
             <Login/>
   {/* ------------------------------------ */}
