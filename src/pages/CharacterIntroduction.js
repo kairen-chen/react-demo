@@ -47,8 +47,12 @@ function CharacterIntroduction(props) {
   },[dispatch,userData.users]);
 
   useEffect(() => {
-    // console.log("角色介紹");
-    setIsBlocking(true);
+    setIsBlocking(prev => 
+      { 
+        console.log("set hook get prev state -->> ",prev)
+        return true 
+      }
+    );
     return  () => { 
       setIsBlocking(false);
     }
