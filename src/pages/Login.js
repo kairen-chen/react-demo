@@ -12,7 +12,7 @@ class PrivateRoute extends Component {
             // props更新後導頁
             if(this.props.userInfo){
                 // console.log("角色介紹頁於(router/privateRoute/Auth/privateRoute.js)history挾帶了參數 -> ", this.props.location.state.referrer.pathname)
-                console.log(`Login page get BaseURL: ${this.props.baseURL}`);
+                console.log(`Login page get BaseURL : ${this.props.baseURL}`);
                 this.props.history.push({
                     pathname: window.previousLocation.pathname,
                     search: window.previousLocation.search
