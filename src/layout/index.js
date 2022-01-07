@@ -38,7 +38,7 @@ class layout extends Component {
      *       又functio componet hook useEffect有觀察props,所以這裡action時
      *       改變了store.counter導致useEffect會被觸發,此時dispatch會跑兩次!!!!!
      * */
-    this.props.increment();
+    // this.props.increment();
   }
 
   // 當props or state更新 ，就會觸發組件更新DOM，所以千萬不要在這個階段setState，會造成無限循環

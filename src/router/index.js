@@ -17,6 +17,7 @@ import "../pages/RouterDemo/AnimatedTransitions.scss";
 
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
+const ImmutableJS = lazy(() => import("../pages/ImmutableJS.jsx"));
 
 function router(props) {
   // console.log("layout 傳過來的 props",props)
@@ -62,6 +63,7 @@ function router(props) {
               )}
             />
             {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}
+            <Route path="/immutableJS" render={() => <ImmutableJS/>} />
             <PrivateRoute
               exact
               path="/characterIntroduction"

@@ -14,50 +14,58 @@ export const decrement = () => {
 
 export const fetchUsers = () => {
   return (dispatch) => {
-    dispatch(fetchUsersRequest())
+    dispatch(fetchUsersRequest());
     axios
       // .get('https://jsonplaceholder.typicode.com/users')
-      .get('https://jsonplaceholder.typicode.com/photos')
-      .then(response => {
+      .get("https://jsonplaceholder.typicode.com/photos")
+      .then((response) => {
         // response.data is the users
-        const users = response.data
-        dispatch(fetchUsersSuccess(users))
+        const users = response.data;
+        dispatch(fetchUsersSuccess(users));
       })
-      .catch(error => {
+      .catch((error) => {
         // error.message is the error message
-        dispatch(fetchUsersFailure(error.message))
-      })
-  }
-}
+        dispatch(fetchUsersFailure(error.message));
+      });
+  };
+};
 
 export const login = () => {
   return {
-    type: "LOGIN"
+    type: "LOGIN",
   };
-}
-   
+};
+
 export const logout = () => {
   return {
-    type: "LOGOUT"
+    type: "LOGOUT",
   };
 };
 
 const fetchUsersRequest = () => {
   return {
-    type: "FETCH_USERS_REQUEST"
-  }
-}
+    type: "FETCH_USERS_REQUEST",
+  };
+};
 
-const fetchUsersSuccess = users => {
+const fetchUsersSuccess = (users) => {
   return {
     type: "FETCH_USERS_SUCCESS",
-    data: users
-  }
-}
+    /**
+     *兩者寫法皆可
+     *
+     * payload比較正統,在reducer get時會多一層payload
+     * */
+    // data: users,
+    payload: {
+      data: users,
+    },
+  };
+};
 
-const fetchUsersFailure = error => {
+const fetchUsersFailure = (error) => {
   return {
     type: "FETCH_USERS_FAILURE",
-    data: error
-  }
-}
+    data: error,
+  };
+};

@@ -83,6 +83,9 @@ class Nav extends Component {
               </ul>
             </div>
           </li>
+          <li>
+            <NavLink to="/immutableJS">immutableJS</NavLink>
+          </li>
         </ul>
       </Container>
     );
