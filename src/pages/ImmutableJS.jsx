@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Immutable from "immutable";
 const { Map } = require("immutable");
 
@@ -135,10 +135,17 @@ const ImmutableJS = (props) => {
   var y = x.set("foo", "azz");
   console.log(x === y); // false
 
+  useEffect(() => {
+    // console.log("about");
+    // 透過setMsg些改msg的值
+    // setMsg("change")
+    window.previousLocation = props.location;
+  }, [props.location]);
+
   return (
     <div style={{ textAlign: "left" }}>
       <div style={{ textAlign: "center", color: "red", fontSize: "100px" }}>
-        ImmutableJS
+        ImmutableJS (deep clone plugin)
       </div>
       <h1 style={{ textAlign: "center" }}>object改值互不干擾</h1>
       <h3>map1.size: {map1.size}</h3>

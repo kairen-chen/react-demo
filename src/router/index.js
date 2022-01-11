@@ -63,7 +63,11 @@ function router(props) {
               )}
             />
             {/* <Route path = "/characterIntroduction" component = { () => CharacterIntroduction(props) } /> */}
-            <Route path="/immutableJS" render={() => <ImmutableJS/>} />
+            <Route
+              exact
+              path="/immutableJS"
+              render={() => <ImmutableJS {...props} />}
+            />
             <PrivateRoute
               exact
               path="/characterIntroduction"
