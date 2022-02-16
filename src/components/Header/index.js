@@ -13,6 +13,7 @@ const
 
 class Header extends Component {
   render(props){
+    
     // console.log("Header props: ", this.props);
     return(
       <Container>

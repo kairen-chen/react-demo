@@ -79,6 +79,7 @@ class layout extends Component {
 
   render() {
     return (
+      // use styled-components
       <ThemeProvider theme={this.state.themeConfig}>
         <Container>
           <div className={scoped("layoutContainer")}>
@@ -87,7 +88,7 @@ class layout extends Component {
             <Login />
             {/* ------------------------------------ */}
             <label
-              htmlFor="changeTheme"
+              for="changeTheme"
               dangerouslySetInnerHTML={{ __html: "<h3> 更換主題色</h3>" }}
               style={{ border: "1px solid white", margin: "20px" }}
             />
@@ -149,7 +150,7 @@ class layout extends Component {
                   </a>
                   <h1 className={scoped("title")}> scoped css test </h1>
                 </div>
-                <button> This is children props </button>
+                <button>(slot demo) This is children props </button>
               </Header>
               {/* ------------------------------------ */}
               <div className={scoped("layout")}>
@@ -160,10 +161,10 @@ class layout extends Component {
                 <button
                   onClick={this.handleClick.bind(this, "Layout value demo1")}
                 >
-                  Layout傳component Demo1
+                  Layout傳component Demo1(使用bind)
                 </button>
                 <button onClick={() => this.handleClick("Layout value demo2")}>
-                  Layout傳component Demo2
+                  Layout傳component Demo2(使用method return)
                 </button>
                 {this.state.cTopName
                   ? `子傳父 Demo --> ${this.state.cTopName}`

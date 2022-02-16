@@ -171,16 +171,16 @@ export default class Footer extends Component {
         <br />
 
         {/* props Demo */}
-        <button onClick={this.handleCToP}>子傳父Demo0</button>
-        <button onClick={this.handleCToP.bind(this)}>子傳父Demo1</button>
+        <button onClick={this.handleCToP}>子傳父Demo0(呼叫子method call父method)</button>
+        <button onClick={this.handleCToP.bind(this)}>子傳父Demo1(呼叫子method call父method use "bind")</button>
         <button
           onClick={() => {
             this.props.handleCToP("子傳父");
           }}
         >
-          子傳父Demo2
+          子傳父Demo2(不透過子method,直接呼叫父method改值)
         </button>
-        <button onClick={this.handleCToC.bind(this)}>子傳子Demo</button>
+        <button onClick={this.handleCToC.bind(this)}>子傳子Demo(透過父)</button>
         <h3>{this.props.test}</h3>
       </Container>
     );

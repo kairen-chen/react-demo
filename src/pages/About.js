@@ -59,7 +59,6 @@ const About = (props) => {
       這訊息是從 Route props取得 -> {props.routerToPage}
       <br />
       About
-      {props.pToc}
       <br />
       count: {userData.counter}
       {/* if、else */}

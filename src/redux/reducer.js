@@ -8,7 +8,6 @@
 //       return state - 1;
 //   }
 // }
-
 const initialState = {
   loading: false,
   users: [],
