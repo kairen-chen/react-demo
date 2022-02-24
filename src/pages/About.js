@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../redux/action";
+import { increment, decrement } from "../redux/action/action";
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -19,7 +19,7 @@ function useQuery() {
 
 const About = (props) => {
   //從reducer取得state
-  const userData = useSelector((state) => state),
+  const userData = useSelector((state) => state.common),
     dispatch = useDispatch();
 
   let { state } = useLocation(), // get data of the router push

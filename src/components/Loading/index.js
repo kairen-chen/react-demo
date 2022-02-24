@@ -21,7 +21,7 @@ class Loading extends Component {
 }
 // 將store中的items值傳綁到props上
 const mapStateToProps = (store) => ({
-  LoadingFlag: store.loading,
+  LoadingFlag: store.common.loading,
 });
 
 export default connect(mapStateToProps)(Loading);

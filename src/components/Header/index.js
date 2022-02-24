@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import * as actionCreators from "../../redux/action";
+import * as actionCreators from "../../redux/action/action";
 
 const Container = styled.div`
   border: 1px solid red;
@@ -28,7 +28,7 @@ class Header extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    userInfo: store.UserInfo,
+    userInfo: store.common.UserInfo,
   };
 };
 export default connect(mapStateToProps, actionCreators)(Header);

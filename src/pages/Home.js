@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import styled, { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
-import { increment } from "../redux/action.js";
+import { increment } from "../redux/action/action.js";
 import { bindActionCreators } from "redux";
 
 // 這兩個是一組的不寫沒辦法dispatch

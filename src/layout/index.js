@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../redux/action";
+import * as actionCreators from "../redux/action/action";
 import { withRouter } from "react-router";
 
 // component
@@ -181,9 +181,11 @@ class layout extends Component {
   }
 }
 // 將store中的items值傳綁到props上
-const mapStateToProps = (store) => ({
-  userInfo: store.UserInfo,
-  store_counter: store.counter,
-});
+const mapStateToProps = (store) => {
+  return {
+    userInfo: store.common.UserInfo,
+    store_counter: store.common.counter,
+  };
+};
 
 export default withRouter(connect(mapStateToProps, actionCreators)(layout));

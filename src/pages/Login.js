@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../redux/action";
+import * as actionCreators from "../redux/action/action";
 import { withRouter } from "react-router";
 class PrivateRoute extends Component {
   handle_login() {
@@ -43,7 +43,7 @@ class PrivateRoute extends Component {
 }
 
 // 將store中的items值傳綁到props上
-const mapStateToProps = (store) => ({ userInfo: store.UserInfo });
+const mapStateToProps = (store) => ({ userInfo: store.common.UserInfo });
 
 export default withRouter(
   connect(mapStateToProps, actionCreators)(PrivateRoute)

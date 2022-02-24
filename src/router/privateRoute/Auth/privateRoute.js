@@ -30,7 +30,7 @@ class PrivateRoute extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    userInfo: store.UserInfo,
+    userInfo: store.common.UserInfo,
   };
 };
 

@@ -16,7 +16,7 @@ const initialState = {
   UserInfo: !true,
 };
 
-const reducer = (state = initialState, action) => {
+export const common = (state = initialState, action) => {
   switch (action.type) {
     case "ADD":
       return Object.assign({}, state, {
@@ -55,5 +55,3 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default reducer;

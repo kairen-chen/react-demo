@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement, fetchUsers } from "../redux/action";
+import { increment, decrement, fetchUsers } from "../redux/action/action";
 import { Prompt } from "react-router-dom";
 import Loading from "../components/Loading";
 
@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 function CharacterIntroduction(props) {
-  const userData = useSelector((state) => state),
+  const userData = useSelector((state) => state.common),
     dispatch = useDispatch(),
     [_height, setHeight] = useState(0);
   let [isBlocking, setIsBlocking] = useState(false);
