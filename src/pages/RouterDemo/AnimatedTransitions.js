@@ -1,18 +1,8 @@
-
 import React from "react";
-import {
-  TransitionGroup,
-  CSSTransition
-} from "react-transition-group";
-import {
-  Switch,
-  Route,
-  Link,
-  useLocation,
-  useParams
-} from "react-router-dom";
-import "./AnimatedTransitions.scss"
-
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Switch, Route, Link, useLocation, useParams } from "react-router-dom";
+import "./AnimatedTransitions.scss";
+import styled from "styled-components";
 
 export default function AnimationApp() {
   let location = useLocation();
@@ -33,14 +23,16 @@ export default function AnimationApp() {
             `location` to `Switch` so it can match
             the old location as it animates out.
           */}
-          <CSSTransition
-            key={location.key}
-            classNames="fade"
-            timeout={300}
-          >
+          <CSSTransition key={location.key} classNames="fade" timeout={300}>
             <Switch location={location}>
-              <Route path="/AnimatedTransitions/hsl/:h/:s/:l" children={<HSL />} />
-              <Route path="/AnimatedTransitions/rgb/:r/:g/:b" children={<RGB />} />
+              <Route
+                path="/AnimatedTransitions/hsl/:h/:s/:l"
+                children={<HSL />}
+              />
+              <Route
+                path="/AnimatedTransitions/rgb/:r/:g/:b"
+                children={<RGB />}
+              />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
@@ -65,7 +57,7 @@ function HSL() {
       style={{
         ...styles.fill,
         ...styles.hsl,
-        background: `hsl(${h}, ${s}%, ${l}%)`
+        background: `hsl(${h}, ${s}%, ${l}%)`,
       }}
     >
       hsl({h}, {s}%, {l}%)
@@ -81,7 +73,7 @@ function RGB() {
       style={{
         ...styles.fill,
         ...styles.rgb,
-        background: `rgb(${r}, ${g}, ${b})`
+        background: `rgb(${r}, ${g}, ${b})`,
       }}
     >
       rgb({r}, {g}, {b})
@@ -92,47 +84,47 @@ function RGB() {
 const styles = {};
 
 styles.fill = {
-  position: "absolute",
+  position: "relative",
   left: 0,
   right: 0,
   bottom: 0,
-  top: 0
+  top: "20px",
 };
 
 styles.content = {
   position: "relative",
   textAlign: "center",
   height: "100%",
-  zIndex: 1,
-  top: "40px"
+  zIndex: 0,
+  top: 0,
 };
 
 styles.nav = {
   padding: 0,
   margin: 0,
-  position: "absolute",
+  position: "relative",
   height: "40px",
   width: "100%",
   display: "flex",
   background: "#e2b36c",
-  fontSize: "20px"
+  fontSize: "20px",
 };
 
 styles.navItem = {
   textAlign: "center",
   flex: 1,
   listStyleType: "none",
-  padding: "10px"
+  padding: "10px",
 };
 
 styles.hsl = {
   color: "white",
   paddingTop: "20px",
-  fontSize: "30px"
+  fontSize: "30px",
 };
 
 styles.rgb = {
   color: "white",
   paddingTop: "20px",
-  fontSize: "30px"
+  fontSize: "30px",
 };

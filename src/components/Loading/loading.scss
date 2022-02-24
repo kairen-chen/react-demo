@@ -1,11 +1,11 @@
 .loadingIcon {
-    /* height: 40vmin; */
-    pointer-events: none;
+  /* height: 40vmin; */
+  pointer-events: none;
 }
-.transiotionGroup{
+.transiotionGroup {
   min-height: 500px;
 }
-  
+
 @media (prefers-reduced-motion: no-preference) {
   .loadingIcon {
     animation: loadinSpin infinite 1s linear;

@@ -22,9 +22,9 @@ const About = (props) => {
   const userData = useSelector((state) => state),
     dispatch = useDispatch();
 
-  let { state } = useLocation(),
-    { PID } = useParams(),
-    query = useQuery();
+  let { state } = useLocation(), // get data of the router push
+    { PID } = useParams(), // get /xx/:me of the url params
+    query = useQuery(); // get /xx?me=123 of the url query
 
   // console.log(
   // "useLocation",useLocation(),
@@ -46,7 +46,7 @@ const About = (props) => {
    * */
   useEffect(() => {
     // console.log("about");
-    // 透過setMsg些改msg的值
+    // 透過setMsg修改msg的值
     // setMsg("change")
     window.previousLocation = props.location;
   }, [props.location]);
@@ -70,13 +70,13 @@ const About = (props) => {
         }
       })()}
       {/* 三元運算式 */}
-      {msg ? `Get value from router --> ${msg}` : ""}
+      {msg ? `Get value from router push--> ${msg}` : ""}
       {PID ? <p>Get PID from url params --> {PID}</p> : ""}
       {query.get("searchMsg")
         ? `Get Msg from url search --> ${query.get("searchMsg")}`
         : ""}
       <br />
-      {props.name}
+      default Props -> {props.name}
       <br />
       <img
         src="https://github.com/kdchang/reactjs101/raw/master/Ch04/images/react-lifecycle.png"

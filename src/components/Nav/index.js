@@ -13,7 +13,7 @@ const Container = styled.div`
     background: linear-gradient(to right, red, yellow) no-repeat fixed;
     li {
       list-style: none;
-      flex:1;
+      flex: 1;
       a {
         color: white;
         :hover {
@@ -25,48 +25,50 @@ const Container = styled.div`
 `;
 class Nav extends Component {
   state = {
-    isBoxVisible: false
-  }
-  componentDidMount(){}
-  
+    isBoxVisible: false,
+  };
+  componentDidMount() {}
+
   dropDownMenu_onHover = () => {
-    this.setState({isBoxVisible:true})
-  }
+    this.setState({ isBoxVisible: true });
+  };
 
   dropDownMenu_onLeave = () => {
-    this.setState({isBoxVisible:false})
-  }
+    this.setState({ isBoxVisible: false });
+  };
 
   dropDownMenu_onClick = () => {
-    this.setState({isBoxVisible:false})
-  }
-  
-  handleRedirect = (go) =>{
-    if(this.props.location.pathname !== go)
+    this.setState({ isBoxVisible: false });
+  };
+
+  handleRedirect = (go) => {
+    if (this.props.location.pathname !== go)
       this.props.history.push({
-        pathname: go
+        pathname: go,
       });
-  }
-  
+  };
+
   render(props) {
     return (
       <Container>
         <ul>
-          <li onClick = { () => this.handleRedirect('/')}>
-            Home
-          </li>
+          <li onClick={() => this.handleRedirect("/")}>Home</li>
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
           <li>
             <Link to="/characterIntroduction">Character introduction</Link>
           </li>
-          <li 
-            onMouseEnter={ this.dropDownMenu_onHover } 
-            onMouseLeave={ this.dropDownMenu_onLeave } 
-            className={ `dropDownMenu ${this.state.isBoxVisible ? "active" : ""}` } 
-          > Router
-            <div onClick={ this.dropDownMenu_onClick }>
+          <li
+            onMouseEnter={this.dropDownMenu_onHover}
+            onMouseLeave={this.dropDownMenu_onLeave}
+            className={`dropDownMenu ${
+              this.state.isBoxVisible ? "active" : ""
+            }`}
+          >
+            {" "}
+            Router
+            <div onClick={this.dropDownMenu_onClick}>
               <ul>
                 <li>
                   <Link to="/RecursivePath/0">Recursive path</Link>
@@ -80,6 +82,9 @@ class Nav extends Component {
                 <li>
                   <Link to="/ModalGallery">Modal Gallery</Link>
                 </li>
+                <li>
+                  <Link to="/AnimatedTransitions">AnimatedTransitions</Link>
+                </li>
               </ul>
             </div>
           </li>
@@ -91,4 +96,4 @@ class Nav extends Component {
     );
   }
 }
-export default withRouter(Nav)
+export default withRouter(Nav);
