@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
 import { increment } from "../redux/action/action.js";
 import { bindActionCreators } from "redux";
-
+import { withTranslation } from "react-i18next";
 // 這兩個是一組的不寫沒辦法dispatch
 const mapStateToProps = (state) => {
   return {};
@@ -50,9 +50,11 @@ class Home extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <ThemeProvider theme={this.props.theme}>
         <Container>
+          <h1>{t("Welcome to React")}</h1>
           Home
           <br />
           class component dispatch Demo !!
@@ -72,4 +74,7 @@ class Home extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
+// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(withRouter(Home))
+);

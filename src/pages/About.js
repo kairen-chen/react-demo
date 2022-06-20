@@ -7,6 +7,7 @@ import { increment, decrement } from "../redux/action/action";
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   border: 1px solid red;
@@ -18,6 +19,8 @@ function useQuery() {
 }
 
 const About = (props) => {
+  const { t } = useTranslation();
+
   //從reducer取得state
   const userData = useSelector((state) => state.common),
     dispatch = useDispatch();
@@ -53,6 +56,7 @@ const About = (props) => {
 
   return (
     <Container>
+      <div>{t("Welcome to React")}</div>
       <button onClick={() => dispatch(increment())}> + </button>
       <button onClick={() => dispatch(decrement())}> - </button>
       <br />

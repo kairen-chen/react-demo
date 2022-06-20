@@ -19,7 +19,10 @@ import Container from "./layout_css";
 import "url-search-params-polyfill";
 import "babel-polyfill";
 
+import { withTranslation, Trans } from "react-i18next";
+
 let scoped = classNames.bind(styles);
+
 class layout extends Component {
   state = {
     routerToPage: "routerToPage",
@@ -28,7 +31,10 @@ class layout extends Component {
     cTocName: "",
     themeConfig: Container.defaultProps.theme,
   };
-
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
+  }
   // life-cycle
   // DOM已經掛載完成 ，在這個階段可以呼叫api來更新DOM ，適合做一些初始化的工作
   componentDidMount() {
@@ -78,10 +84,22 @@ class layout extends Component {
   };
 
   render() {
+    const { t, i18n } = this.props;
+    const changeLanguage = (lng) => {
+      i18n.changeLanguage(lng);
+    };
     return (
       // use styled-components
       <ThemeProvider theme={this.state.themeConfig}>
         <Container className={scoped("layoutContainer")}>
+          <div>
+            <button onClick={() => changeLanguage("de")}>de</button>
+            <button onClick={() => changeLanguage("en")}>en</button>
+          </div>
+          <h1>{t("Welcome to React")}</h1>
+          <Trans>
+            To get started, edit <code>src/App.js</code> and save to reload.
+          </Trans>
           {/* ------------------------------------ */}
           <Login />
           {/* ------------------------------------ */}
@@ -188,4 +206,11 @@ const mapStateToProps = (store) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, actionCreators)(layout));
+export default withTranslation()(
+  withRouter(connect(mapStateToProps, actionCreators)(layout))
+);
+
+// 亦可
+// export default withTranslation()(
+//   connect(mapStateToProps, actionCreators)(withRouter(layout))
+// );
